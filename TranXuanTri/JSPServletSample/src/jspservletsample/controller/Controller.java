@@ -26,6 +26,8 @@ public class Controller extends HttpServlet {
 		super();
 		// TODO Auto-generated constructor stub
 		dsSinhVien.add(new SinhVien(1, "Trí", 1997));
+		dsSinhVien.add(new SinhVien(2, "Trí 2", 1990));
+		dsSinhVien.add(new SinhVien(3, "Trí 3", 1982));
 	}
 
 	/**
@@ -35,9 +37,9 @@ public class Controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setAttribute("students_list", dsSinhVien);
+		request.getSession().setAttribute("students_list", dsSinhVien);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("view_students.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/view_students.jsp");
 
 		dispatcher.forward(request, response);
 	}
