@@ -1,7 +1,8 @@
-package jspservletsample.controller;
+package sampleproject.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,19 +11,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import jspservletsample.entity.SinhVien;
+import sampleproject.entity.SinhVien;
 
 /**
- * Servlet implementation class DeleteStudent
+ * Servlet implementation class SVUpdateForm
  */
-@WebServlet("/formDelete")
-public class FormDeleteStudent extends HttpServlet {
+@WebServlet("/formUpdate")
+public class SVUpdateForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public FormDeleteStudent() {
+	public SVUpdateForm() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -35,10 +36,11 @@ public class FormDeleteStudent extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ArrayList<SinhVien> dsSinhVien = new ArrayList<SinhVien>();
+		List<SinhVien> dsSinhVien = new ArrayList<SinhVien>();
 		if (request.getSession().getAttribute("students_list") != null) {
-			dsSinhVien = (ArrayList<SinhVien>) request.getSession().getAttribute("students_list");
+			dsSinhVien = (List<SinhVien>) request.getSession().getAttribute("students_list");
 		}
+
 		SinhVien student = new SinhVien();
 		int id = Integer.parseInt(request.getParameter("id"));
 		for (SinhVien sv : dsSinhVien) {
@@ -48,8 +50,9 @@ public class FormDeleteStudent extends HttpServlet {
 				student.setNamSinh(sv.getNamSinh());
 			}
 		}
-		request.setAttribute("student_delete", student);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/sinhvien/FormDeleteStudent.jsp");
+
+		request.setAttribute("student_update", student);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/sinhvien/FormUpdateStudent.jsp");
 
 		dispatcher.forward(request, response);
 	}

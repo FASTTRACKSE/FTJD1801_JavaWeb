@@ -1,7 +1,8 @@
-package jspservletsample.controller;
+package sampleproject.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,19 +11,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import jspservletsample.entity.SinhVien;
+import sampleproject.dao.SinhVienDAO;
+import sampleproject.entity.SinhVien;
 
 /**
- * Servlet implementation class DeleteStudent
+ * Servlet implementation class SVListController
  */
-@WebServlet("/formDelete")
-public class FormDeleteStudent extends HttpServlet {
+@WebServlet("/list")
+public class SVListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	SinhVienDAO studentDAO = new SinhVienDAO();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public FormDeleteStudent() {
+	public SVListController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -31,27 +34,18 @@ public class FormDeleteStudent extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ArrayList<SinhVien> dsSinhVien = new ArrayList<SinhVien>();
-		if (request.getSession().getAttribute("students_list") != null) {
-			dsSinhVien = (ArrayList<SinhVien>) request.getSession().getAttribute("students_list");
-		}
-		SinhVien student = new SinhVien();
-		int id = Integer.parseInt(request.getParameter("id"));
-		for (SinhVien sv : dsSinhVien) {
-			if (sv.getId() == id) {
-				student.setId(sv.getId());
-				student.setHoTen(sv.getHoTen());
-				student.setNamSinh(sv.getNamSinh());
-			}
-		}
-		request.setAttribute("student_delete", student);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/sinhvien/FormDeleteStudent.jsp");
+		List<SinhVien> dsSinhVien = new ArrayList<SinhVien>();
+		dsSinhVien = studentDAO.getAllSinhVien();
 
+		request.getSession().setAttribute("students_list", dsSinhVien);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/sinhvien/view_students.jsp");
+
+		// Step 3: forward to the JSP
 		dispatcher.forward(request, response);
+
 	}
 
 	/**
