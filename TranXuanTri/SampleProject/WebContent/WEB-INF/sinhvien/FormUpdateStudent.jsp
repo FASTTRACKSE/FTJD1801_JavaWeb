@@ -10,7 +10,7 @@
 <title>Update student</title>
 </head>
 <body>
-<h2>Form update student</h2>
+<h2 >Form update student</h2>
 	<form action="/SampleProject/update" method="post"
 		class="form-group">
 		ID: <input type="text" name="idUpdate" value ="${student_update.id}" readonly><br>

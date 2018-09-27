@@ -14,8 +14,9 @@
 <title>Quản lý Sinh viên</title>
 </head>
 <body>
-<h2>Danh sách sinh viên</h2>
-<a href="/SampleProject/formAdd" class="btn btn-info"> Thêm sinh viên </a>
+	<h2 align="center">Danh sách sinh viên</h2>
+	<a href="/SampleProject/formAdd" class="btn btn-info"
+		style="margin-left: 10px; margin-bottom: 10px;"> Thêm sinh viên </a>
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -30,12 +31,50 @@
 				<td>${sinhVien.id}</td>
 				<td>${sinhVien.hoTen}</td>
 				<td>${2018 - sinhVien.namSinh}</td>
-				<td>
-				<a href="/SampleProject/formUpdate?id=${sinhVien.id}" class="far fa-edit"></a> 
-				<a href="/SampleProject/formDelete?id=${sinhVien.id}" class="far fa-trash-alt"></a>
-				</td>
+				<td><a href="/SampleProject/formUpdate?id=${sinhVien.id}"
+					class="far fa-edit"></a> <a
+					href="/SampleProject/formDelete?id=${sinhVien.id}"
+					class="far fa-trash-alt"></a></td>
 			</tr>
 		</c:forEach>
 	</table>
+	<ul class="pagination" style="margin-left: 65%;">
+		<c:if test="${pageid != 1}">
+			<li class="page-item"><a class="page-link"
+				href="/SampleProject/list?page=${pageid-1}">Previous</a></li>
+		</c:if>
+
+		<c:choose>
+			<c:when test="${pageid eq 1}">
+				<li class="page-item active"><a class="page-link"
+					href="/SampleProject/list?page=${pageid}">${pageid}</a></li>
+				<li class="page-item"><a class="page-link"
+					href="/SampleProject/list?page=${pageid+1}">${pageid+1}</a></li>
+				<li class="page-item"><a class="page-link"
+					href="/SampleProject/list?page=${pageid+2}">${pageid+2}</a>
+			</c:when>
+			<c:when test="${pageid eq noOfPages}">
+				<li class="page-item"><a class="page-link"
+					href="/SampleProject/list?page=${pageid-2}">${pageid-2}</a></li>
+				<li class="page-item"><a class="page-link"
+					href="/SampleProject/list?page=${pageid-1}">${pageid-1}</a></li>
+				<li class="page-item active"><a class="page-link"
+					href="/SampleProject/list?page=${pageid}">${pageid}</a>
+			</c:when>
+			<c:otherwise>
+				<li class="page-item"><a class="page-link"
+					href="/SampleProject/list?page=${pageid-1}">${pageid-1}</a></li>
+				<li class="page-item active"><a class="page-link"
+					href="/SampleProject/list?page=${pageid}">${pageid}</a></li>
+				<li class="page-item"><a class="page-link"
+					href="/SampleProject/list?page=${pageid+1}">${pageid+1}</a></li>
+			</c:otherwise>
+		</c:choose>
+
+		<c:if test="${pageid lt noOfPages}">
+			<li class="page-item"><a class="page-link"
+				href="/SampleProject/list?page=${pageid+1}">Next</a></li>
+		</c:if>
+	</ul>
 </body>
 </html>

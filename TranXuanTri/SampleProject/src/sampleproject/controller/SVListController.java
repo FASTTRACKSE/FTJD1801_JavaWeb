@@ -38,7 +38,25 @@ public class SVListController extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		List<SinhVien> dsSinhVien = new ArrayList<SinhVien>();
-		dsSinhVien = studentDAO.getAllSinhVien();
+		int pageid = 1;
+		int start = 1;
+		if (request.getParameter("page") != null) {
+			start = Integer.parseInt(request.getParameter("page"));
+			pageid = Integer.parseInt(request.getParameter("page"));
+		} 
+		int recordsPerPage = 3;
+		if (start == 1) {
+		} else {
+			start = start - 1;
+			start = (int) (start * recordsPerPage + 1);
+		}
+
+		dsSinhVien = studentDAO.getAllSinhVien(start,recordsPerPage);
+		double rows = studentDAO.getNumberOfRows();
+		int nOfPages = (int) Math.ceil(rows / recordsPerPage);
+		
+		request.getSession().setAttribute("pageid", pageid);
+		request.getSession().setAttribute("noOfPages", nOfPages);
 
 		request.getSession().setAttribute("students_list", dsSinhVien);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/sinhvien/view_students.jsp");

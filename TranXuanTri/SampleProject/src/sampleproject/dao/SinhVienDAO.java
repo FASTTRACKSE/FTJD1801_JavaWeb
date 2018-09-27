@@ -21,8 +21,8 @@ public class SinhVienDAO {
 		super();
 	}
 
-	public List<SinhVien> getAllSinhVien() {
-		String query = "SELECT * FROM SinhVien";
+	public List<SinhVien> getAllSinhVien(int start, int total) {
+		String query = "SELECT * FROM SinhVien limit "+(start-1)+","+total+"";
 
 		List<SinhVien> list = new ArrayList<SinhVien>();
 		SinhVien sinhVien = null;
@@ -53,7 +53,23 @@ public class SinhVienDAO {
 		}
 		return list;
 	}
+	public int getNumberOfRows() {
+		int numOfRows = 0;
+		try {
+            String query = "SELECT COUNT(*) FROM sinhvien";
+            
+            connection = ConnectionFactory.getInstance().getConnection();
+			statement = connection.createStatement();
 
+			ResultSet rs = statement.executeQuery(query);
+			 while (rs.next()) {
+			 return numOfRows = rs.getInt(1);
+			 }
+        } catch (SQLException | ClassNotFoundException ex) {
+
+        }
+        return numOfRows;
+	}
 	public void addNewSinhVien(SinhVien sv) {
 		String query = "INSERT INTO sinhVien(id,hoten, namsinh) VALUES(?,?, ?)";
 		try {

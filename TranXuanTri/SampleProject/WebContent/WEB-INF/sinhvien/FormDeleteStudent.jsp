@@ -10,7 +10,7 @@
 <title>Form delete</title>
 </head>
 <body>
-	<h2>Form delete student</h2>
+	<h2 >Form delete student</h2>
 	<form action="/SampleProject/delete" method="post"
 		class="form-group">
 		ID: <input type="text" name="idDelete" value ="${student_delete.id}" readonly><br>
