@@ -22,7 +22,7 @@ public class SinhVienDAO {
 	}
 
 	public List<SinhVien> getAllSinhVien(int start, int total) {
-		String query = "SELECT * FROM SinhVien limit "+(start-1)+","+total+"";
+		String query = "SELECT * FROM SinhVien limit " + start + "," + total + "";
 
 		List<SinhVien> list = new ArrayList<SinhVien>();
 		SinhVien sinhVien = null;
@@ -53,23 +53,25 @@ public class SinhVienDAO {
 		}
 		return list;
 	}
+
 	public int getNumberOfRows() {
 		int numOfRows = 0;
 		try {
-            String query = "SELECT COUNT(*) FROM sinhvien";
-            
-            connection = ConnectionFactory.getInstance().getConnection();
+			String query = "SELECT COUNT(*) FROM sinhvien";
+
+			connection = ConnectionFactory.getInstance().getConnection();
 			statement = connection.createStatement();
 
 			ResultSet rs = statement.executeQuery(query);
-			 while (rs.next()) {
-			 return numOfRows = rs.getInt(1);
-			 }
-        } catch (SQLException | ClassNotFoundException ex) {
+			while (rs.next()) {
+				return numOfRows = rs.getInt(1);
+			}
+		} catch (SQLException | ClassNotFoundException ex) {
 
-        }
-        return numOfRows;
+		}
+		return numOfRows;
 	}
+
 	public void addNewSinhVien(SinhVien sv) {
 		String query = "INSERT INTO sinhVien(id,hoten, namsinh) VALUES(?,?, ?)";
 		try {
@@ -121,6 +123,7 @@ public class SinhVienDAO {
 			}
 		}
 	}
+
 	public void deleteSinhVien(int id) {
 		String query = "delete from sinhvien where id=?";
 		try {
@@ -144,5 +147,39 @@ public class SinhVienDAO {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public List<SinhVien> searchSinhVien(String name, int start, int total) {
+		String query = "Select * from sinhvien where hoTen=\"" + name + "\" limit " + start + "," + total + " ";
+		List<SinhVien> list = new ArrayList<SinhVien>();
+		SinhVien sinhVien = null;
+		try {
+			connection = ConnectionFactory.getInstance().getConnection();
+			statement = connection.createStatement();
+			
+			ResultSet rs = statement.executeQuery(query);
+			
+			while (rs.next()) {
+				sinhVien = new SinhVien(rs.getInt("id"), rs.getString("hoten"), rs.getInt("namsinh"));
+				list.add(sinhVien);
+			}
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
+				if (connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
 	}
 }

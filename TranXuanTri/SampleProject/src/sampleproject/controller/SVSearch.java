@@ -15,17 +15,17 @@ import sampleproject.dao.SinhVienDAO;
 import sampleproject.entity.SinhVien;
 
 /**
- * Servlet implementation class SVListController
+ * Servlet implementation class SVSearch
  */
-@WebServlet("/list")
-public class SVListController extends HttpServlet {
+@WebServlet("/search")
+public class SVSearch extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	SinhVienDAO studentDAO = new SinhVienDAO();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public SVListController() {
+	public SVSearch() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -39,38 +39,14 @@ public class SVListController extends HttpServlet {
 		// TODO Auto-generated method stub
 		List<SinhVien> dsSinhVien = new ArrayList<SinhVien>();
 
-		int pageid = 1;
-
-		if (request.getParameter("page") != null) {
-			pageid = Integer.parseInt(request.getParameter("page"));
-		}
-		int recordsPerPage = 3;
-		int recordStart = (pageid - 1) * recordsPerPage;
-
-		if (request.getParameter("nameSearch") == "") {
-			dsSinhVien = studentDAO.getAllSinhVien(recordStart, recordsPerPage);
-			
+		if (request.getParameter("nameSearch") == null) {
+			dsSinhVien = null;
 		} else {
-			request.setCharacterEncoding("UTF-8");
 			String name = request.getParameter("nameSearch");
-			request.getSession().setAttribute("nameSearch", name);
-			dsSinhVien = studentDAO.searchSinhVien(name, recordStart, recordsPerPage);
+//			dsSinhVien = studentDAO.searchSinhVien(name);
 		}
-
-//		dsSinhVien = studentDAO.getAllSinhVien(recordStart, recordsPerPage);
-
-		double rows = studentDAO.getNumberOfRows();
-		int nOfPages = (int) Math.ceil(rows / recordsPerPage);
-
-		request.getSession().setAttribute("pageid", pageid);
-		request.getSession().setAttribute("noOfPages", nOfPages);
-
-		request.getSession().setAttribute("students_list", dsSinhVien);
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/sinhvien/view_students.jsp");
-
-		// Step 3: forward to the JSP
-		dispatcher.forward(request, response);
+		request.getSession().setAttribute("students_search", dsSinhVien);
+		response.sendRedirect("/SampleProject/list");
 
 	}
 
