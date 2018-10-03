@@ -150,7 +150,7 @@ public class SinhVienDAO {
 	}
 
 	public List<SinhVien> searchSinhVien(String name, int start, int total) {
-		String query = "Select * from sinhvien where hoTen=\"" + name + "\" limit " + start + "," + total + " ";
+		String query = "Select * from sinhvien where hoTen like \"%" + name + "%\" limit " + start + "," + total + " ";
 		List<SinhVien> list = new ArrayList<SinhVien>();
 		SinhVien sinhVien = null;
 		try {
@@ -181,5 +181,22 @@ public class SinhVienDAO {
 			}
 		}
 		return list;
+	}
+	public int getNumberOfRowsSearch(String name) {
+		int numOfRows = 0;
+		try {
+			String query = "SELECT COUNT(*) FROM sinhvien where hoTen like \"%" + name + "%\"  ";
+
+			connection = ConnectionFactory.getInstance().getConnection();
+			statement = connection.createStatement();
+
+			ResultSet rs = statement.executeQuery(query);
+			while (rs.next()) {
+				return numOfRows = rs.getInt(1);
+			}
+		} catch (SQLException | ClassNotFoundException ex) {
+
+		}
+		return numOfRows;
 	}
 }

@@ -48,43 +48,67 @@
 	<ul class="pagination" style="margin-left: 65%;">
 		<c:if test="${pageid != 1}">
 			<li class="page-item"><a class="page-link"
-				href="/SampleProject/list?page=${1}&nameSearch=${nameSearch}">Trang đầu</a></li>
+				href="/SampleProject/list?page=${1}&nameSearch=${nameSearch}">Trang
+					đầu</a></li>
 			<li class="page-item"><a class="page-link"
 				href="/SampleProject/list?page=${pageid-1}&nameSearch=${nameSearch}">Previous</a></li>
 		</c:if>
-
 		<c:choose>
-			<c:when test="${pageid eq 1}">
-				<li class="page-item active"><a class="page-link"
-					href="/SampleProject/list?page=${pageid}&nameSearch=${nameSearch}">${pageid}</a></li>
-				<li class="page-item"><a class="page-link"
-					href="/SampleProject/list?page=${pageid+1}&nameSearch=${nameSearch}">${pageid+1}</a></li>
-				<li class="page-item"><a class="page-link"
-					href="/SampleProject/list?page=${pageid+2}&nameSearch=${nameSearch}">${pageid+2}</a>
+			<c:when test="${noOfPages eq 1}">
+				<li class="page-item active"><a class="page-link" href="#">1</a></li>
 			</c:when>
-			<c:when test="${pageid eq noOfPages}">
-				<li class="page-item"><a class="page-link"
-					href="/SampleProject/list?page=${pageid-2}&nameSearch=${nameSearch}">${pageid-2}</a></li>
-				<li class="page-item"><a class="page-link"
-					href="/SampleProject/list?page=${pageid-1}&nameSearch=${nameSearch}">${pageid-1}</a></li>
-				<li class="page-item active"><a class="page-link"
-					href="/SampleProject/list?page=${pageid}&nameSearch=${nameSearch}">${pageid}</a>
+			<c:when test="${noOfPages eq 2}">
+				<c:choose>
+					<c:when test="${pageid eq 1}">
+						<li class="page-item active"><a class="page-link"
+							href="/SampleProject/list?page=${pageid}&nameSearch=${nameSearch}">1</a></li>
+						<li class="page-item"><a class="page-link"
+							href="/SampleProject/list?page=${pageid+1}&nameSearch=${nameSearch}">2</a></li>
+					</c:when>
+					<c:when test="${pageid eq 2}">
+						<li class="page-item "><a class="page-link"
+							href="/SampleProject/list?page=${pageid-1}&nameSearch=${nameSearch}">1</a></li>
+						<li class="page-item active"><a class="page-link"
+							href="/SampleProject/list?page=${pageid}&nameSearch=${nameSearch}">2</a></li>
+					</c:when>
+				</c:choose>
+
 			</c:when>
 			<c:otherwise>
-				<li class="page-item"><a class="page-link"
-					href="/SampleProject/list?page=${pageid-1}&nameSearch=${nameSearch}">${pageid-1}</a></li>
-				<li class="page-item active"><a class="page-link"
-					href="/SampleProject/list?page=${pageid}&nameSearch=${nameSearch}">${pageid}</a></li>
-				<li class="page-item"><a class="page-link"
-					href="/SampleProject/list?page=${pageid+1}&nameSearch=${nameSearch}">${pageid+1}</a></li>
+				<c:choose>
+					<c:when test="${pageid eq 1}">
+						<li class="page-item active"><a class="page-link"
+							href="/SampleProject/list?page=${pageid}&nameSearch=${nameSearch}">${pageid}</a></li>
+						<li class="page-item"><a class="page-link"
+							href="/SampleProject/list?page=${pageid+1}&nameSearch=${nameSearch}">${pageid+1}</a></li>
+						<li class="page-item"><a class="page-link"
+							href="/SampleProject/list?page=${pageid+2}&nameSearch=${nameSearch}">${pageid+2}</a>
+					</c:when>
+					<c:when test="${pageid eq noOfPages}">
+						<li class="page-item"><a class="page-link"
+							href="/SampleProject/list?page=${pageid-2}&nameSearch=${nameSearch}">${pageid-2}</a></li>
+						<li class="page-item"><a class="page-link"
+							href="/SampleProject/list?page=${pageid-1}&nameSearch=${nameSearch}">${pageid-1}</a></li>
+						<li class="page-item active"><a class="page-link"
+							href="/SampleProject/list?page=${pageid}&nameSearch=${nameSearch}">${pageid}</a>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item"><a class="page-link"
+							href="/SampleProject/list?page=${pageid-1}&nameSearch=${nameSearch}">${pageid-1}</a></li>
+						<li class="page-item active"><a class="page-link"
+							href="/SampleProject/list?page=${pageid}&nameSearch=${nameSearch}">${pageid}</a></li>
+						<li class="page-item"><a class="page-link"
+							href="/SampleProject/list?page=${pageid+1}&nameSearch=${nameSearch}">${pageid+1}</a></li>
+					</c:otherwise>
+				</c:choose>
 			</c:otherwise>
 		</c:choose>
-
 		<c:if test="${pageid lt noOfPages}">
 			<li class="page-item"><a class="page-link"
 				href="/SampleProject/list?page=${pageid+1}&nameSearch=${nameSearch}">Next</a></li>
 			<li class="page-item"><a class="page-link"
-				href="/SampleProject/list?page=${noOfPages}&nameSearch=${nameSearch}">Trang cuối</a></li>
+				href="/SampleProject/list?page=${noOfPages}&nameSearch=${nameSearch}">Trang
+					cuối</a></li>
 		</c:if>
 	</ul>
 </body>
