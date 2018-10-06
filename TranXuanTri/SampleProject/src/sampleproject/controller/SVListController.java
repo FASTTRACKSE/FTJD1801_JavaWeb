@@ -39,7 +39,6 @@ public class SVListController extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		List<SinhVien> dsSinhVien = new ArrayList<SinhVien>();
-		
 		int pageid = 1;
 		String name = "";
 		double rows = 0;

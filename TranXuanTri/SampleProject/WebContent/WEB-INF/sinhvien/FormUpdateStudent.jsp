@@ -11,11 +11,11 @@
 </head>
 <body>
 <h2 >Form update student</h2>
-	<form action="/SampleProject/update" method="post"
-		class="form-group">
+	<form action="/SampleProject/update" method="POST" class="form-group" enctype="multipart/form-data">
 		ID: <input type="text" name="idUpdate" value ="${student_update.id}" readonly><br>
 		Name: <input type="text" name="nameUpdate" value ="${student_update.hoTen}"><br>
 		BirthDay: <input type="text" name="birthdayUpdate" value ="${student_update.namSinh}"><br>
+		Image: <input type="file" name="imageUpdate" value ="${student_update.fileName}"><br>
 		<input type="submit" class="btn btn-info" value="Update"> 
 		<a href="/SampleProject/list" class="btn btn-info"> Cancel </a>
 	</form>

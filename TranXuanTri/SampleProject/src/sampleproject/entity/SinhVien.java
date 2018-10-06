@@ -8,16 +8,17 @@ public class SinhVien implements Serializable {
 	private String hoTen;
 	private int namSinh;
 	private int ID;
-
+	private String fileName;
 	public SinhVien() {
 		super();
 	}
 
-	public SinhVien(int id, String hoTen, int namSinh) {
+	public SinhVien(int id, String hoTen, int namSinh,String fileName) {
 		super();
 		this.ID = id;
 		this.hoTen = hoTen;
 		this.namSinh = namSinh;
+		this.fileName = fileName;
 	}
 
 	public int getId() {
@@ -42,5 +43,13 @@ public class SinhVien implements Serializable {
 
 	public void setNamSinh(int namSinh) {
 		this.namSinh = namSinh;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 }

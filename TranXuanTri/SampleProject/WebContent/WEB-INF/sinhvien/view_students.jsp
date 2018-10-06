@@ -30,6 +30,7 @@
 				<th>ID</th>
 				<th>Họ tên</th>
 				<th>Tuổi</th>
+				<th>Ảnh thẻ</th>
 				<th>Thao tác</th>
 			</tr>
 		</thead>
@@ -37,7 +38,8 @@
 			<tr>
 				<td>${sinhVien.id}</td>
 				<td>${sinhVien.hoTen}</td>
-				<td>${2018 - sinhVien.namSinh}</td>
+				<td>${2018 - sinhVien.namSinh} </td>
+				<td> <img src="${sinhVien.fileName}" class="rounded" alt="Ảnh thẻ">  </td>
 				<td><a href="/SampleProject/formUpdate?id=${sinhVien.id}"
 					class="far fa-edit"></a> <a
 					href="/SampleProject/formDelete?id=${sinhVien.id}"
