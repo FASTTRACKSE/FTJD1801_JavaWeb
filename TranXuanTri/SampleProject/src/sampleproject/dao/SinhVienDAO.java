@@ -33,7 +33,7 @@ public class SinhVienDAO {
 
 			ResultSet rs = statement.executeQuery(query);
 			while (rs.next()) {
-				sinhVien = new SinhVien(rs.getInt("id"), rs.getString("hoten"), rs.getInt("namsinh"));
+				sinhVien = new SinhVien(rs.getInt("id"), rs.getString("hoten"), rs.getInt("namsinh"), rs.getString("anh"));
 				list.add(sinhVien);
 			}
 			rs.close();
@@ -73,13 +73,14 @@ public class SinhVienDAO {
 	}
 
 	public void addNewSinhVien(SinhVien sv) {
-		String query = "INSERT INTO sinhVien(id,hoten, namsinh) VALUES(?,?, ?)";
+		String query = "INSERT INTO sinhVien(id,hoten, namsinh,anh) VALUES(?,?,?,?)";
 		try {
 			connection = ConnectionFactory.getInstance().getConnection();
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, sv.getId());
 			preparedStatement.setString(2, sv.getHoTen());
 			preparedStatement.setInt(3, sv.getNamSinh());
+			preparedStatement.setString(4, sv.getFileName());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -98,13 +99,14 @@ public class SinhVienDAO {
 	}
 
 	public void updateSinhVien(SinhVien sv) {
-		String query = "UPDATE sinhvien set hoTen=?, namSinh=? where id=?";
+		String query = "UPDATE sinhvien set hoTen=?, namSinh=?, anh=? where id=?";
 		try {
 			connection = ConnectionFactory.getInstance().getConnection();
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, sv.getHoTen());
 			preparedStatement.setInt(2, sv.getNamSinh());
-			preparedStatement.setInt(3, sv.getId());
+			preparedStatement.setString(3, sv.getFileName());
+			preparedStatement.setInt(4, sv.getId());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -160,7 +162,7 @@ public class SinhVienDAO {
 			ResultSet rs = statement.executeQuery(query);
 			
 			while (rs.next()) {
-				sinhVien = new SinhVien(rs.getInt("id"), rs.getString("hoten"), rs.getInt("namsinh"));
+				sinhVien = new SinhVien(rs.getInt("id"), rs.getString("hoten"), rs.getInt("namsinh"),rs.getString("anh"));
 				list.add(sinhVien);
 			}
 			rs.close();

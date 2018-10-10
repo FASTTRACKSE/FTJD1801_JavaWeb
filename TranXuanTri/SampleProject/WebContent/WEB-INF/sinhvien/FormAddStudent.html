@@ -8,10 +8,11 @@
 </head>
 <body>
 <h2> Form add student </h2>
-	<form action="/SampleProject/insert" method="post" class="form-group" >
+	<form action="/SampleProject/insert" method="POST" class="form-group" enctype="multipart/form-data">
 		ID: <input type="text" name="id" ><br> 
 		Name: <input type="text" name="name"><br>
 		BirthDay: <input type="text" name="birthday"><br>
+		Select File to Upload:<input type="file" name="fileName"><br>
 		<input type="submit" class="btn btn-info" value="Thêm"> 
 		<a href="/SampleProject/list" class="btn btn-info"> Cancel </a>
 	</form>
