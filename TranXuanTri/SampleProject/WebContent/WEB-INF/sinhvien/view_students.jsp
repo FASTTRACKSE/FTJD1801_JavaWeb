@@ -24,6 +24,7 @@
 			<i class="fas fa-search"></i>
 		</button>
 	</form>
+
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -39,7 +40,7 @@
 				<td>${sinhVien.id}</td>
 				<td>${sinhVien.hoTen}</td>
 				<td>${2018 - sinhVien.namSinh} </td>
-				<td> <img src="${sinhVien.fileName}" class="rounded" alt="Ảnh thẻ">  </td>
+				<td> <img src="image/${sinhVien.fileName}" class="rounded" alt="Ảnh thẻ" width="150">  </td>
 				<td><a href="/SampleProject/formUpdate?id=${sinhVien.id}"
 					class="far fa-edit"></a> <a
 					href="/SampleProject/formDelete?id=${sinhVien.id}"

@@ -27,12 +27,14 @@ public class SVAdd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	SinhVienDAO studentDAO = new SinhVienDAO();
 	private ServletFileUpload uploader = null;
+	private static final String SAVE_DIR = "image";
 
 	@Override
 	public void init() throws ServletException {
 		DiskFileItemFactory fileFactory = new DiskFileItemFactory();
-		File filesDir = (File) getServletContext().getAttribute("FILES_DIR_FILE");
-		fileFactory.setRepository(filesDir);
+
+		fileFactory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+
 		this.uploader = new ServletFileUpload(fileFactory);
 	}
 
@@ -50,7 +52,6 @@ public class SVAdd extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		response.sendRedirect("/SampleProject/list");
 	}
 
@@ -61,48 +62,46 @@ public class SVAdd extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		SinhVien sv = new SinhVien();
+		int id = 0;
+		String name = null;
+		int birthday = 0;
+		String avatar = null;
+
+		String uploadPath = getServletContext().getRealPath("/") + File.separator + SAVE_DIR;
+
+		// creates the directory if it does not exist
+		File uploadDir = new File(uploadPath);
+		if (!uploadDir.exists()) {
+			uploadDir.mkdir();
+		}
 		try {
 			List<FileItem> fileItemsList = uploader.parseRequest(request);
 			Iterator<FileItem> fileItemsIterator = fileItemsList.iterator();
+
 			while (fileItemsIterator.hasNext()) {
 				FileItem fileItem = fileItemsIterator.next();
 				if (fileItem.isFormField()) {
 					if (fileItem.getFieldName().equals("id")) {
-						int id = Integer.parseInt(fileItem.getString());
-						sv.setId(id);
+						id = Integer.parseInt(fileItem.getString());
+
 					} else if (fileItem.getFieldName().equals("name")) {
-						String name = fileItem.getString();
-						sv.setHoTen(name);
+						name = fileItem.getString("UTF-8");
+
 					} else if (fileItem.getFieldName().equals("birthday")) {
-						int namSinh = Integer.parseInt(fileItem.getString());
-						sv.setNamSinh(namSinh);
+						birthday = Integer.parseInt(fileItem.getString());
+
 					}
 				} else {
-					if (fileItem.getContentType() != null) {
-						System.out.println("FieldName=" + fileItem.getFieldName());
-						System.out.println("FileName=" + fileItem.getName());
-						System.out.println("ContentType=" + fileItem.getContentType());
-						System.out.println("Size in bytes=" + fileItem.getSize());
-						String uploadFileName = fileItem.getName();
+					
+					String uploadFileName = fileItem.getName();
 						uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf(File.separator) + 1,
 								uploadFileName.length());
-						System.out.println("New file name=" + uploadFileName);
-						
-						File file = new File(request.getServletContext().getAttribute("FILES_DIR") + File.separator
-								+ uploadFileName);
-						System.out.println("Absolute Path at server=" + file.getAbsolutePath());
-						fileItem.write(file);
-						File file1 = new File(request.getServletContext().getAttribute("FILES_DIR") + File.separator + uploadFileName);
-						if (!file1.exists()) {
-							throw new ServletException("File doesn't exists on server.");
-						}
-						System.out.println("File location on server::" + file1.getAbsolutePath());
-						sv.setFileName(file1.getAbsolutePath());
-					}
+					File file = new File(uploadPath + File.separator + uploadFileName);
+					fileItem.write(file);
+					fileItem.write(file);
+					avatar = uploadFileName;
 				}
 			}
 		} catch (FileUploadException e) {
@@ -110,6 +109,7 @@ public class SVAdd extends HttpServlet {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		SinhVien sv = new SinhVien(id, name, birthday, avatar);
 		studentDAO.addNewSinhVien(sv);
 		doGet(request, response);
 	}
