@@ -16,6 +16,7 @@
 		ID: <input type="text" name="idDelete" value ="${student_delete.id}" readonly><br>
 		Name: <input type="text" name="name" value ="${student_delete.hoTen}" readonly><br>
 		BirthDay: <input type="text" name="birthday" value ="${student_delete.namSinh}" readonly><br>
+		Avatar: <img src="image/${student_delete.fileName}" class="rounded" alt="Ảnh thẻ"> <br>
 		<input type="submit" class="btn btn-info" value="Delete"> 
 		<a href="/SampleProject/list" class="btn btn-info"> Cancel </a>
 	</form>

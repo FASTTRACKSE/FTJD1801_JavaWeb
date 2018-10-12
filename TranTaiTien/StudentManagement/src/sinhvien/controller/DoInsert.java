@@ -1,4 +1,4 @@
-package sampleproject.controller;
+package sinhvien.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,34 +16,36 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import sampleproject.dao.SinhVienDAO;
-import sampleproject.entity.SinhVien;
+import sinhvien.dao.SinhVienDAO;
+import sinhvien.entity.SinhVien;
 
 /**
- * Servlet implementation class SVAdd
+ * Servlet implementation class DoInsert
  */
-@WebServlet("/insert")
-public class SVAdd extends HttpServlet {
+@WebServlet("/do_insert")
+public class DoInsert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	SinhVienDAO studentDAO = new SinhVienDAO();
+	private final String UPLOAD_DIRECTORY = "uploads";
 	private ServletFileUpload uploader = null;
-	private static final String SAVE_DIR = "image";
-
-	@Override
-	public void init() throws ServletException {
-		DiskFileItemFactory fileFactory = new DiskFileItemFactory();
-
-		fileFactory.setRepository(new File(System.getProperty("java.io.tmpdir")));
-
-		this.uploader = new ServletFileUpload(fileFactory);
-	}
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public SVAdd() {
+	public DoInsert() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public void init() throws ServletException {
+		// configures upload settings
+		DiskFileItemFactory fileFactory = new DiskFileItemFactory();
+
+		// sets temporary location to store files
+		fileFactory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+
+		// create
+		this.uploader = new ServletFileUpload(fileFactory);
 	}
 
 	/**
@@ -52,7 +54,54 @@ public class SVAdd extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("/SampleProject/list");
+		request.setCharacterEncoding("UTF-8");
+
+		int id = 0;
+		String name = null;
+		int namsinh = 0;
+		String link = null;
+
+		String uploadPath = getServletContext().getRealPath("/") + File.separator + UPLOAD_DIRECTORY;
+
+		// creates the directory if it does not exist
+		File uploadDir = new File(uploadPath);
+		if (!uploadDir.exists()) {
+			uploadDir.mkdir();
+		}
+
+		try {
+			List<FileItem> fileItemsList = uploader.parseRequest(request);
+			Iterator<FileItem> fileItemsIterator = fileItemsList.iterator();
+
+			while (fileItemsIterator.hasNext()) {
+				FileItem fileItem = fileItemsIterator.next();
+				if (fileItem.isFormField()) {
+					if (fileItem.getFieldName().equals("hoten")) {
+						name = fileItem.getString();
+					} else if (fileItem.getFieldName().equals("namsinh")) {
+						namsinh = Integer.parseInt(fileItem.getString());
+					}
+				} else {
+					System.out.println("FieldName=" + fileItem.getFieldName());
+					System.out.println("FileName=" + fileItem.getName());
+					System.out.println("ContentType=" + fileItem.getContentType());
+					System.out.println("Size in bytes=" + fileItem.getSize());
+
+					File file = new File(uploadPath + File.separator + fileItem.getName());
+					System.out.println("Absolute Path at server=" + file.getAbsolutePath());
+					fileItem.write(file);
+					link = fileItem.getName();
+				}
+			}
+		} catch (FileUploadException e) {
+			System.out.println("Exception in uploading file.");
+		} catch (Exception e) {
+			System.out.println("Exception in uploading file.");
+		}
+
+		SinhVien sinhVien = new SinhVien(0, name, namsinh, link);
+		studentDAO.addNewSinhVien(sinhVien);
+		response.sendRedirect("list");
 	}
 
 	/**
@@ -62,55 +111,6 @@ public class SVAdd extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		request.setCharacterEncoding("UTF-8");
-		int id = 0;
-		String name = null;
-		int birthday = 0;
-		String avatar = null;
-
-		String uploadPath = getServletContext().getRealPath("/") + File.separator + SAVE_DIR;
-
-		// creates the directory if it does not exist
-		File uploadDir = new File(uploadPath);
-		if (!uploadDir.exists()) {
-			uploadDir.mkdir();
-		}
-		try {
-			List<FileItem> fileItemsList = uploader.parseRequest(request);
-			Iterator<FileItem> fileItemsIterator = fileItemsList.iterator();
-
-			while (fileItemsIterator.hasNext()) {
-				FileItem fileItem = fileItemsIterator.next();
-				if (fileItem.isFormField()) {
-					if (fileItem.getFieldName().equals("id")) {
-						id = Integer.parseInt(fileItem.getString());
-
-					} else if (fileItem.getFieldName().equals("name")) {
-						name = fileItem.getString("UTF-8");
-
-					} else if (fileItem.getFieldName().equals("birthday")) {
-						birthday = Integer.parseInt(fileItem.getString());
-
-					}
-				} else {
-					
-					String uploadFileName = fileItem.getName();
-						uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf(File.separator) + 1,
-								uploadFileName.length());
-					File file = new File(uploadPath + File.separator + uploadFileName);
-					fileItem.write(file);
-					fileItem.write(file);
-					avatar = uploadFileName;
-				}
-			}
-		} catch (FileUploadException e) {
-			System.out.println(e);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		SinhVien sv = new SinhVien(id, name, birthday, avatar);
-		studentDAO.addNewSinhVien(sv);
 		doGet(request, response);
 	}
 
