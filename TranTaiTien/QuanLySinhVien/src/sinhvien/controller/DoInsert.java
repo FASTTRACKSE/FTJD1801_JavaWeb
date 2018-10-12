@@ -77,7 +77,7 @@ public class DoInsert extends HttpServlet {
 				FileItem fileItem = fileItemsIterator.next();
 				if (fileItem.isFormField()) {
 					if (fileItem.getFieldName().equals("hoten")) {
-						name = fileItem.getString();
+						name = fileItem.getString("UTF-8");
 					} else if (fileItem.getFieldName().equals("namsinh")) {
 						namsinh = Integer.parseInt(fileItem.getString());
 					}

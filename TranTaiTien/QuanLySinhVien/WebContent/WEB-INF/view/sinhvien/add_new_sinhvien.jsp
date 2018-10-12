@@ -26,9 +26,7 @@
 <body>
 	<div style="width: 300px; margin: 10px;">
 		<h1>Thêm sinh viên</h1>
-		<form action="do_insert" onsubmit="return IsEmpty()" method="post" name="frm" enctype="multipart/form-data">
-			<label>Student ID</label> 
-			<input type="text" name="id" class="form-control" placeholder="Student ID" pattern="[0-9]{1,12}"><br> 
+		<form action="do_insert" onsubmit="return IsEmpty()" method="post" name="frm" enctype="multipart/form-data"> 
 			<label>Full Name</label> 
 			<input type="text" name="hoten" class="form-control" placeholder="Full Name"><br>
 			<label>Year Of Birth</label>

@@ -15,13 +15,18 @@
 	 
 		<div style="width: 300px; margin: 10px;">
 			<h1>Cập nhật thông tin</h1>
-			<form action="do_update" method="post">
+			<form action="do_update" method="post" enctype="multipart/form-data">
 				<label>Student ID</label> 
 				<input type="text" name="id" class="form-control" placeholder="Student ID" value="${shareStudent.maSV}"><br> 
 				<label>Full Name</label> 
 				<input type="text" name="hoten" class="form-control" placeholder="Full Name" value="${shareStudent.hoTen}"><br>
 				<label>Year Of Birth</label> 
-				<input type="text" name="namsinh" class="form-control"	placeholder="Year Of Birth" value="${shareStudent.namSinh}"><br> 
+				<input type="text" name="namsinh" class="form-control"	placeholder="Year Of Birth" value="${shareStudent.namSinh}"><br>
+				<input type="hidden" id="oldFile" name="oldFile" value="${shareStudent.avatar}">
+				<label>Hình ảnh</label> 
+				<img alt="null" src="uploads/${shareStudent.avatar}" width="100px" height="120px;"><br><br>
+				<label>Chọn file tải lên</label>
+				<input type="file" name="fileName" class="btn btn-primary" > <br><br> 				
 				<input type="submit" value="Cập nhật" class="btn btn-primary">
 			</form>
 		</div>

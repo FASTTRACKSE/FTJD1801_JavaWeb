@@ -13,6 +13,12 @@
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
+<style type="text/css">
+	img{
+		width: 45px;
+		height: 60px;
+	}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Quản lý sinh viên</title>
 </head>
@@ -129,9 +135,6 @@
 			</ul>
 			<h3 style='float: left;'>
 				<a href='call_insert' class="btn btn-primary btn-lg active">Thêm</a>
-			</h3>
-			<h3>
-				<a></a>
 			</h3>
 		</div>
 	</center>

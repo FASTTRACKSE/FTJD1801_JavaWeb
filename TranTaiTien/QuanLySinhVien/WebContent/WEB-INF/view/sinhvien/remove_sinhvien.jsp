@@ -1,5 +1,3 @@
-%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
 <html>
@@ -9,7 +7,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
-<title>XÓA SẠCH HẾT</title>
+<title>Xóa Sinh Viên</title>
 </head>
 <body> 
 		<div style="width: 300px; margin: 10px;">
@@ -20,7 +18,9 @@
 				<label>Full Name</label> 
 				<input type="text" name="hoten" class="form-control" value="${shareStudent.hoTen}" readonly="readonly"><br>
 				<label>Year Of Birth</label> 
-				<input type="text" name="namsinh" class="form-control" value="${shareStudent.namSinh}" readonly="readonly"><br> 
+				<input type="text" name="namsinh" class="form-control" value="${shareStudent.namSinh}" readonly="readonly"><br>
+				<label>Hình ảnh</label>  
+				<img alt="null" src="uploads/${shareStudent.avatar}" width="100px" height="120px;"><br><br>
 				<input type="submit" value="Xóa" class="btn btn-primary">
 			</form>
 		</div>

@@ -225,4 +225,29 @@ public class SinhVienDAO {
 		}
 
 	}
+//	public void updateSinhVienImgNull(SinhVien sv) {
+//		String query = "UPDATE sinhvien SET TenSV = ?, NamSinh = ? WHERE MaSV = ? ";
+//		try {
+//			connection = ConnectionFactory.getInstance().getConnection();
+//			preparedStatement = connection.prepareStatement(query);
+//			preparedStatement.setString(1, sv.getHoTen());
+//			preparedStatement.setInt(2, sv.getNamSinh());
+//			preparedStatement.setInt(3, sv.getMaSV());
+//			preparedStatement.executeUpdate();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				if (statement != null)
+//					statement.close();
+//				if (connection != null)
+//					connection.close();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	}
+	
 }
