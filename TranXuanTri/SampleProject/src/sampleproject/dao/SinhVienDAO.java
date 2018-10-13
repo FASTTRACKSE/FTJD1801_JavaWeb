@@ -101,23 +101,13 @@ public class SinhVienDAO {
 	public void updateSinhVien(SinhVien sv) {
 		String query = "UPDATE sinhvien set hoTen=?, namSinh=?, anh=? where id=?";
 		try {
-			if (sv.getFileName().equals("")) {
-				query = "UPDATE sinhvien set hoTen=?, namSinh=? where id=?";
-				connection = ConnectionFactory.getInstance().getConnection();
-				preparedStatement = connection.prepareStatement(query);
-				preparedStatement.setString(1, sv.getHoTen());
-				preparedStatement.setInt(2, sv.getNamSinh());
-				preparedStatement.setInt(3, sv.getId());
-				preparedStatement.executeUpdate();
-			} else {
 			connection = ConnectionFactory.getInstance().getConnection();
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, sv.getHoTen());
 			preparedStatement.setInt(2, sv.getNamSinh());
 			preparedStatement.setString(3, sv.getFileName());
 			preparedStatement.setInt(4, sv.getId());
-			preparedStatement.executeUpdate();
-			}
+			preparedStatement.executeUpdate();		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
