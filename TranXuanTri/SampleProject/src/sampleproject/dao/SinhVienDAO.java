@@ -158,9 +158,7 @@ public class SinhVienDAO {
 		try {
 			connection = ConnectionFactory.getInstance().getConnection();
 			statement = connection.createStatement();
-			
-			ResultSet rs = statement.executeQuery(query);
-			
+			ResultSet rs = statement.executeQuery(query);			
 			while (rs.next()) {
 				sinhVien = new SinhVien(rs.getInt("id"), rs.getString("hoten"), rs.getInt("namsinh"),rs.getString("anh"));
 				list.add(sinhVien);
