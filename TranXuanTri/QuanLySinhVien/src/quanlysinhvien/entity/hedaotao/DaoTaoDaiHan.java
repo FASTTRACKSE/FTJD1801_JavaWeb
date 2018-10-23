@@ -3,11 +3,10 @@ package quanlysinhvien.entity.hedaotao;
 import java.util.List;
 import quanlysinhvien.entity.monhoc.*;
 
-
 public class DaoTaoDaiHan implements HeDaoTao {
-	
+
 	List<MonHoc> dsMonHoc;
-	
+
 	public List<MonHoc> getDsMonHoc() {
 		return dsMonHoc;
 	}
@@ -15,6 +14,7 @@ public class DaoTaoDaiHan implements HeDaoTao {
 	public void setDsMonHoc(List<MonHoc> dsMonHoc) {
 		this.dsMonHoc = dsMonHoc;
 	}
+
 	@Override
 	public String getThongTinHeDaoTao() {
 		// TODO Auto-generated method stub
@@ -32,5 +32,5 @@ public class DaoTaoDaiHan implements HeDaoTao {
 		// TODO Auto-generated method stub
 		return dsMonHoc;
 	}
-	
+
 }

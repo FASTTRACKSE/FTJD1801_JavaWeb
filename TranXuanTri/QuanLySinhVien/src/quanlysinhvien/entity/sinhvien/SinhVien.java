@@ -11,12 +11,13 @@ public class SinhVien {
 	String email;
 	LoaiHinhDaoTao loaiDaoTao;
 	HeDaoTao heDaoTao;
-	
+
 	public SinhVien() {
 
 	}
 
-	public SinhVien(String hoTen, int namSinh, String diaChi, String dienThoai, String email,LoaiHinhDaoTao loaiDaoTao,HeDaoTao heDaoTao) {
+	public SinhVien(String hoTen, int namSinh, String diaChi, String dienThoai, String email, LoaiHinhDaoTao loaiDaoTao,
+			HeDaoTao heDaoTao) {
 		super();
 		this.hoTen = hoTen;
 		this.namSinh = namSinh;

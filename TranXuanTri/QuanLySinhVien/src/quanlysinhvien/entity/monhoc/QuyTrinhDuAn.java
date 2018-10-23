@@ -13,7 +13,7 @@ public class QuyTrinhDuAn implements MonHoc {
 	@Override
 	public String getThongTinMonHoc() {
 		// TODO Auto-generated method stub
-		return "Lập Trình java cơ bản";
+		return "Quy Trình Dự Án";
 	}
 
 	public GiangVien getGiangVien() {
