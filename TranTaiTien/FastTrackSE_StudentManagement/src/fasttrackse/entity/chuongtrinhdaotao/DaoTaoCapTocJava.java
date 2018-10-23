@@ -30,7 +30,7 @@ public class DaoTaoCapTocJava implements HeDaoTao {
 	@Override
 	public List<MonHoc> getDanhSachMonHoc() {
 		// TODO Auto-generated method stub
-		return null;
+		return monhoc;
 	}
 
 }

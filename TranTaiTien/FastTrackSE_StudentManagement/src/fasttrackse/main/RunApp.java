@@ -90,19 +90,19 @@ public class RunApp {
 
 		// -------------------------------------------------//
 
-		dsJava.add(new LapTrinhJavaCoBan());
-		dsJava.add(new LapTrinhJavaWeb());
+		dsJava.add(lapTrinhJavaCoBan);
+		dsJava.add(lapTrinhJavaWeb);
 
-		dsPHP.add(new LapTrinhWebFrontend());
-		dsPHP.add(new LapTrinhWebPHP_MySQL());
+		dsPHP.add(lapTrinhFrontend);
+		dsPHP.add(lapTrinhPHP);
 
-		dsAllExams.add(new LapTrinhCoBan());
-		dsAllExams.add(new LapTrinhJavaCoBan());
-		dsAllExams.add(new LapTrinhJavaWeb());
-		dsAllExams.add(new LapTrinhWebFrontend());
-		dsAllExams.add(new LapTrinhWebPHP_MySQL());
-		dsAllExams.add(new QuyTrinhDuAn());
-		dsAllExams.add(new TinHocVanPhong());
+		dsAllExams.add(lapTrinhCoBan);
+		dsAllExams.add(lapTrinhJavaCoBan);
+		dsAllExams.add(lapTrinhJavaWeb);
+		dsAllExams.add(lapTrinhFrontend);
+		dsAllExams.add(lapTrinhPHP);
+		dsAllExams.add(quyTrinhDuAn);
+		dsAllExams.add(tinHocVanPhong);
 
 		// -------------------------------------------------//
 
