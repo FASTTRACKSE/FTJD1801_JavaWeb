@@ -62,7 +62,7 @@ public class SVAdd extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		request.setCharacterEncoding("UTF-8");
 		int id = 0;
 		String name = null;
@@ -84,24 +84,28 @@ public class SVAdd extends HttpServlet {
 				FileItem fileItem = fileItemsIterator.next();
 				if (fileItem.isFormField()) {
 					if (fileItem.getFieldName().equals("id")) {
-						id = Integer.parseInt(fileItem.getString());
-
+						if (!fileItem.getString().equals("")) {
+							id = Integer.parseInt(fileItem.getString());
+						}
 					} else if (fileItem.getFieldName().equals("name")) {
-						name = fileItem.getString("UTF-8");
-
+						if (!fileItem.getString().equals("")) {
+							name = fileItem.getString("UTF-8");
+						}
 					} else if (fileItem.getFieldName().equals("birthday")) {
-						birthday = Integer.parseInt(fileItem.getString());
-
+						if (!fileItem.getString().equals("")) {
+							birthday = Integer.parseInt(fileItem.getString());
+						}
 					}
 				} else {
-					
+					if (!fileItem.getString().equals("")) {
 					String uploadFileName = fileItem.getName();
-						uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf(File.separator) + 1,
-								uploadFileName.length());
+					uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf(File.separator) + 1,
+							uploadFileName.length());
 					File file = new File(uploadPath + File.separator + uploadFileName);
 					fileItem.write(file);
 					fileItem.write(file);
 					avatar = uploadFileName;
+					} 
 				}
 			}
 		} catch (FileUploadException e) {
@@ -109,8 +113,10 @@ public class SVAdd extends HttpServlet {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		if (id!=0 && name != null && birthday != 0 && avatar != null) {
 		SinhVien sv = new SinhVien(id, name, birthday, avatar);
 		studentDAO.addNewSinhVien(sv);
+		}
 		doGet(request, response);
 	}
 
