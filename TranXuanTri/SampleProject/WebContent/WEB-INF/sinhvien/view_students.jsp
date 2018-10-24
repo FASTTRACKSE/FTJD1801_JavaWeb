@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="language"
+	value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
+	scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="sampleproject.resource.text" />
 <!DOCTYPE html>
-<html>
+<html lang="${language}">
 <head>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -14,12 +20,24 @@
 <title>Quản lý Sinh viên</title>
 </head>
 <body>
-	<h2 align="center">Danh sách sinh viên</h2>
+	<form>
+		<select id="language" name="language" onchange="submit()">
+			<option value="en_GB" ${language == 'en_GB' ? 'selected' : ''}>English</option>
+			<option value="vi_VN" ${language == 'vi_VN' ? 'selected' : ''}>Tiếng
+				Việt</option>
+		</select>
+	</form>
+	<h2 align="center">
+		<label for="title"><fmt:message key="login.title.list" /></label>
+	</h2>
+	<fmt:message key="login.button.add" var="buttonAdd" />
 	<a href="/SampleProject/formAdd" class="btn btn-info"
-		style="margin-left: 10px; margin-bottom: 10px;"> Thêm sinh viên </a>
+		style="margin-left: 10px; margin-bottom: 10px;"> ${buttonAdd} </a>
+	
 	<form action="/SampleProject/list">
+	<fmt:message key="login.label.search" var="search" />
 		<input type="search" name="nameSearch"
-			placeholder="Nhập tên sinh viên cần tìm">
+			placeholder="${search }">
 		<button class="btn btn-default" type="submit">
 			<i class="fas fa-search"></i>
 		</button>
@@ -28,19 +46,20 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>ID</th>
-				<th>Họ tên</th>
-				<th>Tuổi</th>
-				<th>Ảnh thẻ</th>
-				<th>Thao tác</th>
+				<th><fmt:message key="login.label.id" /></th>
+				<th><fmt:message key="login.label.name" /></th>
+				<th><fmt:message key="login.label.age" /></th>
+				<th><fmt:message key="login.label.avatar" /></th>
+				<th><fmt:message key="login.label.edit" /></th>
 			</tr>
 		</thead>
 		<c:forEach var="sinhVien" items="${students_list}">
 			<tr>
 				<td>${sinhVien.id}</td>
 				<td>${sinhVien.hoTen}</td>
-				<td>${2018 - sinhVien.namSinh} </td>
-				<td> <img src="image/${sinhVien.fileName}" class="rounded" alt="Ảnh thẻ" width="150">  </td>
+				<td>${2018 - sinhVien.namSinh}</td>
+				<td><img src="getimage/${sinhVien.fileName}" class="rounded"
+					alt="Ảnh thẻ" width="150"></td>
 				<td><a href="/SampleProject/formUpdate?id=${sinhVien.id}"
 					class="far fa-edit"></a> <a
 					href="/SampleProject/formDelete?id=${sinhVien.id}"
@@ -51,10 +70,9 @@
 	<ul class="pagination" style="margin-left: 65%;">
 		<c:if test="${pageid != 1}">
 			<li class="page-item"><a class="page-link"
-				href="/SampleProject/list?page=${1}&nameSearch=${nameSearch}">Trang
-					đầu</a></li>
+				href="/SampleProject/list?page=${1}&nameSearch=${nameSearch}"><fmt:message key="login.pagination.firstPage" /></a></li>
 			<li class="page-item"><a class="page-link"
-				href="/SampleProject/list?page=${pageid-1}&nameSearch=${nameSearch}">Previous</a></li>
+				href="/SampleProject/list?page=${pageid-1}&nameSearch=${nameSearch}"><fmt:message key="login.pagination.previous" /></a></li>
 		</c:if>
 		<c:choose>
 			<c:when test="${noOfPages eq 1}">
@@ -108,10 +126,9 @@
 		</c:choose>
 		<c:if test="${pageid lt noOfPages}">
 			<li class="page-item"><a class="page-link"
-				href="/SampleProject/list?page=${pageid+1}&nameSearch=${nameSearch}">Next</a></li>
+				href="/SampleProject/list?page=${pageid+1}&nameSearch=${nameSearch}"><fmt:message key="login.pagination.next" /></a></li>
 			<li class="page-item"><a class="page-link"
-				href="/SampleProject/list?page=${noOfPages}&nameSearch=${nameSearch}">Trang
-					cuối</a></li>
+				href="/SampleProject/list?page=${noOfPages}&nameSearch=${nameSearch}"><fmt:message key="login.pagination.lastPage" /></a></li>
 		</c:if>
 	</ul>
 </body>

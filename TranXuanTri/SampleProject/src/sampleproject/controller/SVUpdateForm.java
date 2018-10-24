@@ -48,6 +48,7 @@ public class SVUpdateForm extends HttpServlet {
 				student.setId(sv.getId());
 				student.setHoTen(sv.getHoTen());
 				student.setNamSinh(sv.getNamSinh());
+				student.setFileName(sv.getFileName());
 			}
 		}
 

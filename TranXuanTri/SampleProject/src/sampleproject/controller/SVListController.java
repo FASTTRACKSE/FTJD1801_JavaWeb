@@ -37,8 +37,9 @@ public class SVListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		
 		List<SinhVien> dsSinhVien = new ArrayList<SinhVien>();
+		
 		int pageid = 1;
 		String name = "";
 		double rows = 0;
@@ -70,7 +71,7 @@ public class SVListController extends HttpServlet {
 		request.getSession().setAttribute("students_list", dsSinhVien);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/sinhvien/view_students.jsp");
-
+		
 		dispatcher.forward(request, response);
 
 	}

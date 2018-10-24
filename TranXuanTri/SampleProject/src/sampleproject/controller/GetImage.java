@@ -34,7 +34,7 @@ public class GetImage extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String filename = URLDecoder.decode(request.getPathInfo().substring(1), "UTF-8");
-		File file = new File("/Users/thanhcl/hinhcuatui", filename);
+		File file = new File("E:\\image\\", filename);
 		response.setHeader("Content-Type", getServletContext().getMimeType(filename));
 		response.setHeader("Content-Length", String.valueOf(file.length()));
 		response.setHeader("Content-Disposition", "inline; filename=\"" + file.getName() + "\"");

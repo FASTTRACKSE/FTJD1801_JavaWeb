@@ -88,10 +88,11 @@ public class SVUpdate extends HttpServlet {
 
 					} else if (fileItem.getFieldName().equals("nameUpdate")) {
 						name = fileItem.getString("UTF-8");
-
 					} else if (fileItem.getFieldName().equals("birthdayUpdate")) {
 						birthday = Integer.parseInt(fileItem.getString());
-
+					} else if (fileItem.getFieldName().equals("image")) {
+						avatar = fileItem.getString().substring(fileItem.getString().lastIndexOf(File.separator) + 1,fileItem.getString().length());
+						
 					}
 				} else {
 					if (!fileItem.getName().equals("")) {
@@ -99,13 +100,10 @@ public class SVUpdate extends HttpServlet {
 						uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf(File.separator) + 1,
 								uploadFileName.length());
 						File file = new File(uploadPath + File.separator + uploadFileName);
-						System.out.println("Absolute Path at server=" + file.getAbsolutePath());
 						fileItem.write(file);
 						fileItem.write(file);
 						avatar = uploadFileName;
-					} else {
-						avatar = "";
-					}
+					} 
 				}
 			}
 		} catch (FileUploadException e) {
