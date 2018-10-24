@@ -173,11 +173,10 @@ public class RunApp {
 			if(monhoc.getDanhSachTroGiang() != null) {
 				for (GiangVien trogiang : monhoc.getDanhSachTroGiang()) {
 					System.out
-							.println("		\t+ Trợ Giảng: " + trogiang.getHoTen() + "  |  Email: " + trogiang.getEmail());
+							.println("		\t\t+ Trợ Giảng: " + trogiang.getHoTen() + "  |  Email: " + trogiang.getEmail());
 				}
 			}
 		}
-		
 		
 		System.out.println(" * Thông tin cơ bản: ");
 		System.out.println("	- Họ và tên: " + lien.getHoTen());
@@ -202,7 +201,7 @@ public class RunApp {
 			if(monhoc.getDanhSachTroGiang() != null) {
 				for (GiangVien trogiang : monhoc.getDanhSachTroGiang()) {
 					System.out
-							.println("		\t+ Trợ Giảng: " + trogiang.getHoTen() + "  |  Email: " + trogiang.getEmail());
+							.println("		\t\t+ Trợ Giảng: " + trogiang.getHoTen() + "  |  Email: " + trogiang.getEmail());
 				}
 			}
 		}
@@ -230,12 +229,9 @@ public class RunApp {
 			if(monhoc.getDanhSachTroGiang() != null) {
 				for (GiangVien trogiang : monhoc.getDanhSachTroGiang()) {
 					System.out
-							.println("		\t+ Trợ Giảng: " + trogiang.getHoTen() + "  |  Email: " + trogiang.getEmail());
+							.println("		\t\t+ Trợ Giảng: " + trogiang.getHoTen() + "  |  Email: " + trogiang.getEmail());
 				}
 			}
-		}
-
-		
+		}	
 	}
-
 }
