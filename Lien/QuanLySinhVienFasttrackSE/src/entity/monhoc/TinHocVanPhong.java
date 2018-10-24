@@ -6,7 +6,7 @@ import entity.giangvien.GiangVien;
 
 public class TinHocVanPhong implements MonHoc {
 	List<GiangVien> giangvien;
-
+	List<GiangVien> trogiang;
 	@Override
 	public String getTenMonHoc() {
 		// TODO Auto-generated method stub
@@ -19,12 +19,26 @@ public class TinHocVanPhong implements MonHoc {
 		return giangvien;
 	}
 
+	public List<GiangVien> getTrogiang() {
+		return trogiang;
+	}
+
+	public void setTrogiang(List<GiangVien> trogiang) {
+		this.trogiang = trogiang;
+	}
+
 	public List<GiangVien> getGiangvien() {
 		return giangvien;
 	}
 
 	public void setGiangvien(List<GiangVien> giangvien) {
 		this.giangvien = giangvien;
+	}
+
+	@Override
+	public List<GiangVien> getDanhSachTroGiang() {
+		// TODO Auto-generated method stub
+		return trogiang;
 	}
 
 }

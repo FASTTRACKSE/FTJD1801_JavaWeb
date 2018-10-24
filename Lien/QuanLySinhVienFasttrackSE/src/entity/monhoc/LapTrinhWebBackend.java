@@ -6,7 +6,7 @@ import entity.giangvien.GiangVien;
 
 public class LapTrinhWebBackend implements MonHoc{
 	List<GiangVien> giangvien;
-
+	List<GiangVien> trogiang;
 	public List<GiangVien> getGiangvien() {
 		return giangvien;
 	}
@@ -25,5 +25,19 @@ public class LapTrinhWebBackend implements MonHoc{
 	public List<GiangVien> getDanhSachGiangVien() {
 		// TODO Auto-generated method stub
 		return giangvien;
+	}
+
+	@Override
+	public List<GiangVien> getDanhSachTroGiang() {
+		// TODO Auto-generated method stub
+		return trogiang;
+	}
+
+	public List<GiangVien> getTrogiang() {
+		return trogiang;
+	}
+
+	public void setTrogiang(List<GiangVien> trogiang) {
+		this.trogiang = trogiang;
 	}
 }
