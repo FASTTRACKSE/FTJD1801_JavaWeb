@@ -6,6 +6,7 @@ import fasttrackse.entity.giangvien.GiangVien;
 
 public class TinHocVanPhong implements MonHoc {
 	List<GiangVien> giangvien;
+	List<GiangVien> trogiang;
 
 	@Override
 	public String getTenMonHoc() {
@@ -25,6 +26,20 @@ public class TinHocVanPhong implements MonHoc {
 
 	public void setGiangvien(List<GiangVien> giangvien) {
 		this.giangvien = giangvien;
+	}
+
+	public List<GiangVien> getTrogiang() {
+		return trogiang;
+	}
+
+	public void setTrogiang(List<GiangVien> trogiang) {
+		this.trogiang = trogiang;
+	}
+
+	@Override
+	public List<GiangVien> getDanhSachTroGiang() {
+		// TODO Auto-generated method stub
+		return trogiang;
 	}
 
 }

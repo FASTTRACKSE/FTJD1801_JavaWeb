@@ -8,12 +8,7 @@ import fasttrackse.entity.chuongtrinhdaotao.DaoTaoCapTocPHP;
 import fasttrackse.entity.chuongtrinhdaotao.DaoTaoDaiHan;
 import fasttrackse.entity.chuongtrinhdaotao.DaoTaoOffline;
 import fasttrackse.entity.chuongtrinhdaotao.DaoTaoOnline;
-import fasttrackse.entity.giangvien.CoAnh;
-import fasttrackse.entity.giangvien.CoSinh;
-import fasttrackse.entity.giangvien.CoVan;
 import fasttrackse.entity.giangvien.GiangVien;
-import fasttrackse.entity.giangvien.ThayThanh;
-import fasttrackse.entity.giangvien.ThayToan;
 import fasttrackse.entity.monhoc.LapTrinhCoBan;
 import fasttrackse.entity.monhoc.LapTrinhJavaCoBan;
 import fasttrackse.entity.monhoc.LapTrinhJavaWeb;
@@ -57,27 +52,57 @@ public class RunApp {
 		List<GiangVien> gvLapTrinhWebPHP_MySQL = new ArrayList<GiangVien>();
 		List<GiangVien> gvQuyTrinhDuAn = new ArrayList<GiangVien>();
 		List<GiangVien> gvTinHocVanPhong = new ArrayList<GiangVien>();
+		
+		// -------------------------------------------------//
+		
+		List<GiangVien> tgLapTrinhJavaWeb = new ArrayList<GiangVien>();
+		List<GiangVien> tgLapTrinhBackend = new ArrayList<GiangVien>();
+		List<GiangVien> tgDesign = new ArrayList<GiangVien>();
 
 		// -------------------------------------------------//
+		
+		GiangVien coTin = new GiangVien("Nguyễn Thị Tin", "tin@gmail.com");
+		GiangVien thayJavaCore = new GiangVien("Trần Tài JavaCore", "javacore@gmail.com");
+		GiangVien coJavaWeb = new GiangVien("Nguyễn Thị JavaWeb", "javaweb@gmail.com");
+		GiangVien thayJava = new GiangVien("Trần Tài Java", "java@gmail.com");
+		GiangVien coFrontend = new GiangVien("Nguyễn Thị Frontend", "frontend@gmail.com");
+		GiangVien thayBackend = new GiangVien("Trần tài Backend","backend@gmail.com");
+		GiangVien thayPHP = new GiangVien("Trần Tài PHP", "php@gmail.com");
+		GiangVien coWeb = new GiangVien("Nguyễn Thị Web", "web@gmail.com");
+		
+		GiangVien troGiangLapTrinh = new GiangVien("Trương Thị Lập Trình", "laptrinh@gmail.com");
+		GiangVien troGiangDesign = new GiangVien("Trương Công Design", "design@gmail.com");
+		
+		// -------------------------------------------------//
 
-		gvLapTrinhCoBan.add(new CoAnh());
-		gvLapTrinhCoBan.add(new CoVan());
+		gvLapTrinhCoBan.add(coTin);
 
-		gvLapTrinhJavaCoBan.add(new ThayToan());
-		gvLapTrinhJavaCoBan.add(new CoVan());
+		gvLapTrinhJavaCoBan.add(thayJavaCore);
+		gvLapTrinhJavaCoBan.add(thayJava);
 
-		gvLapTrinhJavaWeb.add(new ThayThanh());
+		gvLapTrinhJavaWeb.add(coJavaWeb);
+		gvLapTrinhJavaWeb.add(coWeb);
 
-		gvLapTrinhWebFrontend.add(new CoSinh());
-		gvLapTrinhWebFrontend.add(new CoVan());
-		gvLapTrinhWebFrontend.add(new ThayToan());
+		gvLapTrinhWebFrontend.add(coFrontend);
+		gvLapTrinhWebFrontend.add(coWeb);
+		gvLapTrinhWebFrontend.add(coTin);
 
-		gvLapTrinhWebPHP_MySQL.add(new ThayThanh());
+		gvLapTrinhWebPHP_MySQL.add(thayBackend);
+		gvLapTrinhWebPHP_MySQL.add(thayPHP);
 
-		gvQuyTrinhDuAn.add(new CoVan());
+		gvQuyTrinhDuAn.add(coTin);
 
-		gvTinHocVanPhong.add(new CoSinh());
+		gvTinHocVanPhong.add(coTin);
 
+		// -------------------------------------------------//
+		
+		tgLapTrinhJavaWeb.add(troGiangDesign);
+		tgLapTrinhJavaWeb.add(troGiangLapTrinh);
+		
+		tgLapTrinhBackend.add(troGiangLapTrinh);
+		
+		tgDesign.add(troGiangDesign);
+		
 		// -------------------------------------------------//
 
 		lapTrinhCoBan.setGiangvien(gvLapTrinhCoBan);
@@ -88,6 +113,12 @@ public class RunApp {
 		quyTrinhDuAn.setGiangvien(gvQuyTrinhDuAn);
 		tinHocVanPhong.setGiangvien(gvTinHocVanPhong);
 
+		// -------------------------------------------------//
+		
+		lapTrinhJavaWeb.setTrogiang(tgLapTrinhJavaWeb);
+		lapTrinhFrontend.setTrogiang(tgDesign);
+		lapTrinhPHP.setTrogiang(tgLapTrinhBackend);
+		
 		// -------------------------------------------------//
 
 		dsJava.add(lapTrinhJavaCoBan);
@@ -137,7 +168,13 @@ public class RunApp {
 			System.out.println("		+ Tên môn học: " + monhoc.getTenMonHoc());
 			for (GiangVien giangvien : monhoc.getDanhSachGiangVien()) {
 				System.out
-						.println("		+ Giảng viên: " + giangvien.getHoTen() + "  |  Email: " + giangvien.getEmail());
+						.println("		\t+ Giảng viên: " + giangvien.getHoTen() + "  |  Email: " + giangvien.getEmail());
+			}
+			if(monhoc.getDanhSachTroGiang() != null) {
+				for (GiangVien trogiang : monhoc.getDanhSachTroGiang()) {
+					System.out
+							.println("		\t+ Trợ Giảng: " + trogiang.getHoTen() + "  |  Email: " + trogiang.getEmail());
+				}
 			}
 		}
 		
@@ -160,7 +197,13 @@ public class RunApp {
 			System.out.println("		+ Tên môn học: " + monhoc.getTenMonHoc());
 			for (GiangVien giangvien : monhoc.getDanhSachGiangVien()) {
 				System.out
-						.println("		+ Giảng viên: " + giangvien.getHoTen() + "  |  Email: " + giangvien.getEmail());
+						.println("		\t+ Giảng viên: " + giangvien.getHoTen() + "  |  Email: " + giangvien.getEmail());
+			}
+			if(monhoc.getDanhSachTroGiang() != null) {
+				for (GiangVien trogiang : monhoc.getDanhSachTroGiang()) {
+					System.out
+							.println("		\t+ Trợ Giảng: " + trogiang.getHoTen() + "  |  Email: " + trogiang.getEmail());
+				}
 			}
 		}
 
@@ -182,7 +225,13 @@ public class RunApp {
 			System.out.println("		+ Tên môn học: " + monhoc.getTenMonHoc());
 			for (GiangVien giangvien : monhoc.getDanhSachGiangVien()) {
 				System.out
-						.println("		+ Giảng viên: " + giangvien.getHoTen() + "  |  Email: " + giangvien.getEmail());
+						.println("		\t+ Giảng viên: " + giangvien.getHoTen() + "  |  Email: " + giangvien.getEmail());
+			}
+			if(monhoc.getDanhSachTroGiang() != null) {
+				for (GiangVien trogiang : monhoc.getDanhSachTroGiang()) {
+					System.out
+							.println("		\t+ Trợ Giảng: " + trogiang.getHoTen() + "  |  Email: " + trogiang.getEmail());
+				}
 			}
 		}
 
