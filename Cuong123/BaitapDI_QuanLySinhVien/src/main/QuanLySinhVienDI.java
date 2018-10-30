@@ -16,6 +16,7 @@ public class QuanLySinhVienDI{
 		SinhVien sinhvien1 = context.getBean("sinhVien1", SinhVien.class);
 		SinhVien sinhvien2 = context.getBean("sinhVien2", SinhVien.class);
 		SinhVien sinhvien3 = context.getBean("sinhVien3", SinhVien.class);
+		context.close();
 		
 		System.out.println("Thonng tin sv : " +sinhvien1.getThongTinSinhVien().getThongTinSinhVien());
 		System.out.println("Loai Hinh Dao tao : " +sinhvien1.getLoaiHinhDaoTao().getLoaiHinhDaoTao());
@@ -54,7 +55,7 @@ public class QuanLySinhVienDI{
 				}
 		}
 	
-		context.close();
+	
 		
 	
 		
