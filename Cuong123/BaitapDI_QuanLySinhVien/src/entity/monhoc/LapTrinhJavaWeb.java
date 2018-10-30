@@ -1,20 +1,37 @@
 package entity.monhoc;
 
+import java.util.List;
+
 import entity.giangvien.GiangVien;
 
 public class LapTrinhJavaWeb implements MonHoc {
 	String thongTinMonHoc = "Lập trình Java Web";
 	GiangVien giangVien;
+List<GiangVien> dsTroGiang ;
+	
 
+	public List<GiangVien> getDsTroGiang() {
+		return dsTroGiang;
+	}
+
+
+	public void setDsTroGiang(List<GiangVien> dsTroGiang) {
+		this.dsTroGiang = dsTroGiang;
+	}
 	public LapTrinhJavaWeb() {
 
 	}
-
+	
 	public LapTrinhJavaWeb(GiangVien giangVien) {
 		super();
-
 		this.giangVien = giangVien;
+		
+	}
 
+	public LapTrinhJavaWeb(GiangVien giangVien, List<GiangVien> dsTroGiang) {
+		super();
+		this.giangVien = giangVien;
+		this.dsTroGiang = dsTroGiang;
 	}
 
 	public GiangVien getGiangVien() {
