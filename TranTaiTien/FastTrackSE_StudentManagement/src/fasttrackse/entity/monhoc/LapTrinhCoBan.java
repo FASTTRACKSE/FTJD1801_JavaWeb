@@ -6,6 +6,7 @@ import fasttrackse.entity.giangvien.GiangVien;
 
 public class LapTrinhCoBan implements MonHoc {
 	List<GiangVien> giangvien;
+	List<GiangVien> trogiang;
 
 	public List<GiangVien> getGiangvien() {
 		return giangvien;
@@ -13,6 +14,14 @@ public class LapTrinhCoBan implements MonHoc {
 
 	public void setGiangvien(List<GiangVien> giangvien) {
 		this.giangvien = giangvien;
+	}
+
+	public List<GiangVien> getTrogiang() {
+		return trogiang;
+	}
+
+	public void setTrogiang(List<GiangVien> trogiang) {
+		this.trogiang = trogiang;
 	}
 
 	@Override
@@ -25,6 +34,12 @@ public class LapTrinhCoBan implements MonHoc {
 	public List<GiangVien> getDanhSachGiangVien() {
 		// TODO Auto-generated method stub
 		return giangvien;
+	}
+
+	@Override
+	public List<GiangVien> getDanhSachTroGiang() {
+		// TODO Auto-generated method stub
+		return trogiang;
 	}
 
 }

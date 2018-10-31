@@ -8,6 +8,18 @@ public class DaoTaoOnline implements LoaiHinhDaoTao {
 	@Override
 	public String getThongTinLoaiDaoTao() {
 		// TODO Auto-generated method stub
-		return loaiDaoTao + " || Giờ học: " + thoiGian + " || Địa điểm: " + diaChi;
+		return loaiDaoTao;
+	}
+
+	@Override
+	public String getGioHoc() {
+		// TODO Auto-generated method stub
+		return thoiGian;
+	}
+
+	@Override
+	public String getDiaDiem() {
+		// TODO Auto-generated method stub
+		return diaChi;
 	}
 }
