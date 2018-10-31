@@ -6,7 +6,7 @@ import managerment.entity.monhoc.MonHoc;
 
 public class DaoTaoDaiHan implements HeDaoTao {
 
-	List<MonHoc> dsMonHoc;
+	List<MonHoc> monhoc;
 	@Override
 	public String getThongTinThoiGianHoc() {
 		// TODO Auto-generated method stub
@@ -26,20 +26,26 @@ public class DaoTaoDaiHan implements HeDaoTao {
 
 }
 
-	public void setDsDaiHan(List<MonHoc> dsDaiHan) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
-	@Override
-	public List<MonHoc> getDanhSachMonHoc() {
-		// TODO Auto-generated method stub
-		return dsMonHoc;
-	}
+	
 
 	@Override
 	public String getThongTinHeDaoTao() {
 		// TODO Auto-generated method stub
 		return "Đào tạo dài hạn";
+	}
+
+	public List<MonHoc> getMonhoc() {
+		return monhoc;
+	}
+
+	public void setMonhoc(List<MonHoc> monhoc) {
+		this.monhoc = monhoc;
+	}
+	@Override
+	public List<MonHoc> getDanhSachMonHoc() {
+		// TODO Auto-generated method stub
+		return monhoc;
 	}
 }
