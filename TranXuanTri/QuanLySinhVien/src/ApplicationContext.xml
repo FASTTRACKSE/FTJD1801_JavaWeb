@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd
+                    http://www.springframework.org/schema/mvc
+                    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                    http://www.springframework.org/schema/context
+                    http://www.springframework.org/schema/context/spring-context.xsd">
+
+<bean id="cosinh" class="quanlysinhvien.entity.giangvien.GiangVien">  
+<property name="hoTen" value="Cô Sinh"></property>
+<property name="email" value="cosinh@gmail.com"></property>
+</bean>
+<bean id="thayJava" class="quanlysinhvien.entity.giangvien.GiangVien">  
+<property name="hoTen" value="Thầy Java"></property>
+<property name="email" value="thayjava@gmail.com"></property>
+</bean>
+<bean id="thayPHP" class="quanlysinhvien.entity.giangvien.GiangVien">  
+<property name="hoTen" value="Thầy PHP"></property>
+<property name="email" value="thayphp@mail.com"></property>
+</bean>
+<bean id="thayFrontend" class="quanlysinhvien.entity.giangvien.GiangVien">  
+<property name="hoTen" value="Thầy Frontend"></property>
+<property name="email" value="thayFrontend@gmail.com"></property>
+</bean>
+<bean id="coDuAn" class="quanlysinhvien.entity.giangvien.GiangVien">  
+<property name="hoTen" value="Cô Dự Án"></property>
+<property name="email" value="coDuAn@gmail.com"></property>
+</bean>
+<bean id="coTinHoc" class="quanlysinhvien.entity.giangvien.GiangVien">  
+<property name="hoTen" value="Cô Tin Học"></property>
+<property name="email" value="coTinHoc@gmail.com"></property>
+</bean>
+<bean id="lapTrinhCoBan" class="quanlysinhvien.entity.monhoc.LapTrinhCoBan">
+<property name="GiangVien" ref="cosinh"></property>
+</bean>
+<bean id="frontend" class="quanlysinhvien.entity.monhoc.LapTrinhFrontend">
+<property name="GiangVien" ref="thayFrontend"></property>
+<property name="dsTroGiang"><list><ref bean="thayJava"></ref> </list></property>
+</bean>
+<bean id="javaCoBan" class="quanlysinhvien.entity.monhoc.LapTrinhJavaCoBan">
+<property name="GiangVien" ref="thayJava"></property>
+</bean>
+<bean id="javaWeb" class="quanlysinhvien.entity.monhoc.LapTrinhJavaWeb">
+<property name="GiangVien" ref="thayJava"></property>
+<property name="dsTroGiang"><list><ref bean="thayPHP"></ref> </list></property>
+</bean>
+<bean id="php" class="quanlysinhvien.entity.monhoc.LapTrinhPHP">
+<property name="GiangVien" ref="thayPHP"></property>
+<property name="dsTroGiang"><list><ref bean="thayFrontend"></ref><ref bean="thayJava"></ref></list></property>
+</bean>
+<bean id="duAn" class="quanlysinhvien.entity.monhoc.QuyTrinhDuAn">
+<property name="GiangVien" ref="coDuAn"></property>
+</bean>
+<bean id="tinHocVanPhong" class="quanlysinhvien.entity.monhoc.TinHocVanPhong">
+<property name="GiangVien" ref="coTinHoc"></property>
+</bean>
+
+<bean id="daoTaoOffline" class="quanlysinhvien.entity.loaihinhdaotao.DaoTaoOffline"></bean>
+<bean id="daoTaoOnline" class="quanlysinhvien.entity.loaihinhdaotao.DaoTaoOnline"></bean>
+
+<bean id="daoTaoJava" class="quanlysinhvien.entity.hedaotao.DaoTaoJava">
+<property name="dsMonHoc">
+<list>
+<ref bean="javaCoBan"></ref>
+<ref bean="javaWeb"></ref>
+</list>
+</property>
+</bean>
+
+<bean id="daoTaoPHP" class="quanlysinhvien.entity.hedaotao.DaoTaoPHP">
+<property name="dsMonHoc">
+<list>
+<ref bean="frontend"></ref>
+<ref bean="php"></ref>
+</list>
+</property>
+</bean>
+
+<bean id="daoTaoDaiHan" class="quanlysinhvien.entity.hedaotao.DaoTaoDaiHan">
+<property name="dsMonHoc">
+<list>
+<ref bean="lapTrinhCoBan"></ref>
+<ref bean="frontend"></ref>
+<ref bean="javaCoBan"></ref>
+<ref bean="javaWeb"></ref>
+<ref bean="php"></ref>
+<ref bean="duAn"></ref>
+<ref bean="tinHocVanPhong"></ref>
+</list>
+</property>
+</bean>
+
+<bean id="sinhvien1" class="quanlysinhvien.entity.sinhvien.SinhVien">
+<property name="hoTen" value="Vimal Jaiswal"></property>  
+<property name="email" value="@mail.com"></property>
+<property name="namSinh" value="1997"></property>
+<property name="diaChi" value="abc"></property>
+<property name="dienThoai" value="01234"></property>
+<property name="loaiDaoTao" ref="daoTaoOffline"></property>
+<property name="heDaoTao" ref="daoTaoJava"></property>
+</bean>
+<bean id="sinhvien2" class="quanlysinhvien.entity.sinhvien.SinhVien">
+<property name="hoTen" value="Tri"></property>  
+<property name="email" value="@mail.com"></property>
+<property name="namSinh" value="1997"></property>
+<property name="diaChi" value="abc"></property>
+<property name="dienThoai" value="01234"></property>
+<property name="loaiDaoTao" ref="daoTaoOnline"></property>
+<property name="heDaoTao" ref="daoTaoPHP"></property>
+</bean>
+<bean id="sinhvien3" class="quanlysinhvien.entity.sinhvien.SinhVien">
+<property name="hoTen" value="Trần Xuân Trí"></property>  
+<property name="email" value="@mail.com"></property>
+<property name="namSinh" value="1997"></property>
+<property name="diaChi" value="abc"></property>
+<property name="dienThoai" value="01234"></property>
+<property name="loaiDaoTao" ref="daoTaoOffline"></property>
+<property name="heDaoTao" ref="daoTaoDaiHan"></property>
+</bean>
+</beans> 

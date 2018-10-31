@@ -58,7 +58,7 @@ public class QuanLySinhVien {
 		dsSinhVien.add(sinhVien1);
 		dsSinhVien.add(sinhVien2);
 		dsSinhVien.add(sinhVien3);
-
+		
 		for (SinhVien sinhVien : dsSinhVien) {
 			System.out.println("		----Thông tin sinh viên-----");
 			System.out.println("Thông tin cơ bản sinh viên:");
