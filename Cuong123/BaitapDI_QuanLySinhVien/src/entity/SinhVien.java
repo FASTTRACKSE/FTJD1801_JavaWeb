@@ -2,7 +2,7 @@ package entity;
 
 import entity.hedaotao.HeDaoTao;
 import entity.loaihinhdaotao.LoaiHinhDaoTao;
-import entity.thongtinsinhvien.ThongTinSinhVien;
+import entity.thongtinsinhvien.*;;
 
 public class SinhVien {
 	ThongTinSinhVien thongTinSinhVien;
