@@ -4,7 +4,7 @@ import java.util.List;
 
 import fasttrackse.entity.giangvien.GiangVien;
 
-public class LapTrinhWebPHP_MySQL implements MonHoc{
+public class LapTrinhWebPHP implements MonHoc{
 	List<GiangVien> giangvien;
 	List<GiangVien> trogiang;
 

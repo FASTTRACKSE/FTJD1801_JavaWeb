@@ -13,7 +13,7 @@ import fasttrackse.entity.monhoc.LapTrinhCoBan;
 import fasttrackse.entity.monhoc.LapTrinhJavaCoBan;
 import fasttrackse.entity.monhoc.LapTrinhJavaWeb;
 import fasttrackse.entity.monhoc.LapTrinhWebFrontend;
-import fasttrackse.entity.monhoc.LapTrinhWebPHP_MySQL;
+import fasttrackse.entity.monhoc.LapTrinhWebPHP;
 import fasttrackse.entity.monhoc.MonHoc;
 import fasttrackse.entity.monhoc.QuyTrinhDuAn;
 import fasttrackse.entity.monhoc.TinHocVanPhong;
@@ -33,7 +33,7 @@ public class RunApp {
 		LapTrinhJavaCoBan lapTrinhJavaCoBan = new LapTrinhJavaCoBan();
 		LapTrinhJavaWeb lapTrinhJavaWeb = new LapTrinhJavaWeb();
 		LapTrinhWebFrontend lapTrinhFrontend = new LapTrinhWebFrontend();
-		LapTrinhWebPHP_MySQL lapTrinhPHP = new LapTrinhWebPHP_MySQL();
+		LapTrinhWebPHP lapTrinhPHP = new LapTrinhWebPHP();
 		QuyTrinhDuAn quyTrinhDuAn = new QuyTrinhDuAn();
 		TinHocVanPhong tinHocVanPhong = new TinHocVanPhong();
 
@@ -164,6 +164,7 @@ public class RunApp {
 		System.out.println(" * Hệ đào tạo: " + tien.getHeDaoTao().getHeDaoTao());
 		System.out.println("	- Thông tin thời gian học: " + tien.getHeDaoTao().getThongTinThoiGianHoc());
 		System.out.println("	- Thông tin môn học: ");
+		
 		for (MonHoc monhoc : tien.getHeDaoTao().getDanhSachMonHoc()) {
 			System.out.println("		+ Tên môn học: " + monhoc.getTenMonHoc());
 			for (GiangVien giangvien : monhoc.getDanhSachGiangVien()) {
