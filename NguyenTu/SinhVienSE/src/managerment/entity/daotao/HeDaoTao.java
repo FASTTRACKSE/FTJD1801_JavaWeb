@@ -8,7 +8,6 @@ public interface HeDaoTao {
 
 		public String getThongTinThoiGianHoc();
 		public String getThongTinMonHoc();
-		public List<MonHoc> getDanhSachMonHoc();
 		public String getThongTinHeDaoTao();
-		
+		public List<MonHoc> getDanhSachMonHoc();
 }

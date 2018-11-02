@@ -3,12 +3,7 @@ package main.run;
 import java.util.ArrayList;
 import java.util.List;
 
-import entity.giangvien.CoFrontEnd;
 import entity.giangvien.GiangVien;
-import entity.giangvien.ThayJava;
-import entity.giangvien.ThayPHP;
-import entity.giangvien.ThayTin;
-import entity.giangvien.ThayWeb;
 import entity.hedaotao.DaoTaoDaiHan;
 import entity.hedaotao.DaoTaoJava;
 import entity.hedaotao.DaoTaoPHP;
@@ -52,23 +47,32 @@ public class Test {
 		List<GiangVien> gvQuyTrinhDuAn = new ArrayList<GiangVien>();
 		List<GiangVien> gvTinHocVanPhong = new ArrayList<GiangVien>();
 
-		gvCoBan.add(new ThayTin());
+		List<GiangVien> tgJavaCoBan = new ArrayList<GiangVien>();
+		List<GiangVien> tgJavaWeb = new ArrayList<GiangVien>();
 
-		gvJavaCoBan.add(new ThayJava());
+		GiangVien coHoa = new GiangVien("Nguyễn Thị Hoa", "Hoa@gmail.com");
+		GiangVien coDia = new GiangVien("Nguyễn Thị Lia", "Lia@gmail.com");
+		GiangVien leThanh = new GiangVien("Lê Cao Thành", "Thanh@gmail.com");
+		GiangVien congTuan = new GiangVien("Trương Công Tuấn", "Tuan@gmail.com");
+		GiangVien congThien = new GiangVien("Trương Công Thiên", "Thien@gmail.com");
+		GiangVien congSon = new GiangVien("Trương Công Sơn", "Son@gmail.com");
+		GiangVien thiCan = new GiangVien("Nguyễn Thị Cân", "Can@gmail.com");
 
-		gvJavaWeb.add(new ThayJava());
-		gvJavaWeb.add(new ThayWeb());
+		GiangVien tgminhTri = new GiangVien("Trần Minh Trí", "Tri@gmail.com");
+		GiangVien tgvanCuong = new GiangVien("Trần Văn Cường", "Cuong@gmail.com");
+		GiangVien tghongNgan = new GiangVien("Nguyễn Thị Hồng Ngân", "Ngan@gmail.com");
+		GiangVien tgminhThong = new GiangVien("Trần Minh Thông", "Thông@gmail.com");
+		GiangVien tgvanThang = new GiangVien("Trần Văn Thăng", "Thăng@gmail.com");
+		GiangVien tgminhminh = new GiangVien("Trần Minh Minh", "Minh@gmail.com");
+		GiangVien tgtuTrinh = new GiangVien("Nguyễn Thị Tú Trinh", "Trinh@gmail.com");
 
-		gvWebFrontend.add(new CoFrontEnd());
-		gvWebFrontend.add(new ThayPHP());
-		gvWebFrontend.add(new ThayWeb());
+		gvCoBan.add(coHoa);
+		gvCoBan.add(leThanh);
 
-		gvWebBackend.add(new ThayPHP());
-		gvWebBackend.add(new ThayWeb());
+		gvJavaWeb.add(congThien);
+		tgJavaWeb.add(tgminhThong);
 
-		gvQuyTrinhDuAn.add(new ThayTin());
-
-		gvTinHocVanPhong.add(new ThayTin());
+		gvQuyTrinhDuAn.add(leThanh);
 
 		lapTrinhCoBan.setGiangvien(gvCoBan);
 		lapTrinhJavaCoBan.setGiangvien(gvJavaCoBan);
@@ -77,6 +81,9 @@ public class Test {
 		lapTrinhBackend.setGiangvien(gvWebBackend);
 		quyTrinhDuAn.setGiangvien(gvQuyTrinhDuAn);
 		tinHocVanPhong.setGiangvien(gvTinHocVanPhong);
+		
+		lapTrinhJavaWeb.setTrogiang(tgJavaWeb);
+		
 
 		listJava.add(lapTrinhJavaCoBan);
 		listJava.add(lapTrinhJavaWeb);
@@ -120,6 +127,13 @@ public class Test {
 				System.out.println(
 						"		> Giảng viên: " + giangvien.getHoTen() + "  		>  Email: " + giangvien.getEmail());
 			}
+			if (monhoc.getDanhSachTroGiang() != null) {
+				for (GiangVien trogiang : monhoc.getDanhSachTroGiang()) {
+					System.out.println(
+							"		> Trợ Giảng: " + trogiang.getHoTen() + "  		>  Email: " + trogiang.getEmail());
+				} 
+			}
+
 		}
 		System.out.println(
 				"\n\n//-------------------------------------------------------------------------------------------//");
@@ -139,6 +153,13 @@ public class Test {
 			for (GiangVien giangvien : monhoc.getDanhSachGiangVien()) {
 				System.out.println(
 						"		> Giảng viên: " + giangvien.getHoTen() + "  		>  Email: " + giangvien.getEmail());
+
+			}
+			if (monhoc.getDanhSachTroGiang() != null) {
+				for (GiangVien trogiang : monhoc.getDanhSachTroGiang()) {
+					System.out.println(
+							"		\t\t> Trợ Giảng: " + trogiang.getHoTen() + "  		>  Email: " + trogiang.getEmail());
+				} 
 			}
 		}
 
@@ -160,6 +181,13 @@ public class Test {
 			for (GiangVien giangvien : monhoc.getDanhSachGiangVien()) {
 				System.out.println(
 						"		> Giảng viên: " + giangvien.getHoTen() + "  		>  Email: " + giangvien.getEmail());
+			}
+			if (monhoc.getDanhSachTroGiang()!=null) {
+				for (GiangVien trogiang : monhoc.getDanhSachTroGiang()) {
+					System.out.println(
+							"		> Trợ Giảng: " + trogiang.getHoTen() + "  		>  Email: " + trogiang.getEmail());
+
+				} 
 			}
 		}
 

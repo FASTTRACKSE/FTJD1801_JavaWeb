@@ -1,5 +1,8 @@
 package entity;
 
+import entity.hedaotao.HeDaoTao;
+import entity.loaidaotao.LoaiHinhDaoTao;
+
 public class SinhVien {
 	String hoTen;
 	int namSinh;

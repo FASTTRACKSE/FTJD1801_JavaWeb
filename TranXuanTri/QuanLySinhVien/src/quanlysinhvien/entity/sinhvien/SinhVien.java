@@ -4,7 +4,7 @@ import quanlysinhvien.entity.hedaotao.HeDaoTao;
 import quanlysinhvien.entity.loaihinhdaotao.LoaiHinhDaoTao;
 
 public class SinhVien {
-	String hoTen;
+	private String hoTen;
 	int namSinh;
 	String diaChi;
 	String dienThoai;

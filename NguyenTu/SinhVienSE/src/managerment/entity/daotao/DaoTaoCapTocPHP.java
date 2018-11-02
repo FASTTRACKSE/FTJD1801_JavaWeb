@@ -5,7 +5,7 @@ import java.util.List;
 import managerment.entity.monhoc.MonHoc;
 
 public class DaoTaoCapTocPHP implements HeDaoTao {
-	List<MonHoc> dsMonHoc;
+	List<MonHoc> monhoc;
 	@Override
 	public String getThongTinThoiGianHoc() {
 		// TODO Auto-generated method stub
@@ -19,20 +19,25 @@ public class DaoTaoCapTocPHP implements HeDaoTao {
 				"- Lập trình Web PHP & MySQL";
 	}
 
-	public void setDsMonHoc(List<MonHoc> dsPhp) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
-	@Override
-	public List<MonHoc> getDanhSachMonHoc() {
-		// TODO Auto-generated method stub
-		return dsMonHoc;
-	}
-
+	
 	@Override
 	public String getThongTinHeDaoTao() {
 		// TODO Auto-generated method stub
 		return "Đào tạo cấp tốc Php";
+	}
+
+	public List<MonHoc> getMonhoc() {
+		return monhoc;
+	}
+
+	public void setMonhoc(List<MonHoc> monhoc) {
+		this.monhoc = monhoc;
+	}
+	@Override
+	public List<MonHoc> getDanhSachMonHoc() {
+		// TODO Auto-generated method stub
+		return monhoc;
 	}
 }

@@ -1,6 +1,24 @@
 package entity.giangvien;
 
-public interface GiangVien {
+public class GiangVien {
 	
-	public String getGiangVien();
+String thongTinGiangVien ;
+	
+	public GiangVien() {
+		
+	}
+
+
+	public GiangVien(String thongTinGiangVien) {
+	super();
+	this.thongTinGiangVien = thongTinGiangVien;
+}
+
+	public String getGiangVien() {
+		return thongTinGiangVien;
+	}
+
+	public void setGiangVien(String thongTinGiangVien) {
+		this.thongTinGiangVien = thongTinGiangVien;
+	}
 }

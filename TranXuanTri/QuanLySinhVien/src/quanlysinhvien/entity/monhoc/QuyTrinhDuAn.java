@@ -8,11 +8,15 @@ public class QuyTrinhDuAn implements MonHoc {
 	GiangVien giangVien;
 	List<GiangVien> dsTroGiang;
 
+	public QuyTrinhDuAn() {
+
+	}
+
 	public QuyTrinhDuAn(GiangVien giangVien) {
 		super();
 		this.giangVien = giangVien;
 	}
-	
+
 	public QuyTrinhDuAn(GiangVien giangVien, List<GiangVien> dsTroGiang) {
 		super();
 		this.giangVien = giangVien;

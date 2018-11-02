@@ -8,9 +8,19 @@ public class TinHocVanPhong implements MonHoc {
 	GiangVien giangVien;
 	List<GiangVien> dsTroGiang;
 
+	public TinHocVanPhong() {
+
+	}
+
 	public TinHocVanPhong(GiangVien giangVien) {
 		super();
 		this.giangVien = giangVien;
+	}
+
+	public TinHocVanPhong(GiangVien giangVien, List<GiangVien> dsTroGiang) {
+		super();
+		this.giangVien = giangVien;
+		this.dsTroGiang = dsTroGiang;
 	}
 
 	public List<GiangVien> getDsTroGiang() {
@@ -44,7 +54,6 @@ public class TinHocVanPhong implements MonHoc {
 	@Override
 	public String getThongTinMonHoc() {
 		// TODO Auto-generated method stub
-		return "Tin học văn phòng";
+		return "Tin Học Văn Phòng";
 	}
-
 }
