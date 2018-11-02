@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1>Edit Employee</h1>
-	<form:form method="POST" action="/SpringMVCCRUDSimple/editsave">
+	<form:form method="POST" action="/SpringMVCCRUD/editsave">
 		<table>
 			<tr>
 				<td></td>
