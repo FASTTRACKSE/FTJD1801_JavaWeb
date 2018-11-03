@@ -8,7 +8,7 @@
     http://www.springframework.org/schema/context  
     http://www.springframework.org/schema/context/spring-context.xsd">
 	<context:component-scan
-		base-package="springmvccrud.controller" />
+		base-package="quanlysinhvien.controller" />
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
@@ -23,7 +23,7 @@
 	<bean id="jt" class="org.springframework.jdbc.core.JdbcTemplate">
 	<property name="dataSource" ref="ds"></property>
 	</bean>
-	<bean id="dao" class="springmvccrud.dao.EmpDao">
+	<bean id="dao" class="quanlysinhvien.dao.SinhVienDao">
 	<property name="template" ref="jt"></property>
 	</bean>
 </beans> 

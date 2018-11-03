@@ -41,7 +41,7 @@ public class SinhVienDao {
 		return template.queryForObject(sql, new Object[] {id}, new BeanPropertyRowMapper<SinhVien>(SinhVien.class));
 	}
 	public List<SinhVien> getDsSinhVien () {
-		return template.query("select * from emp", new RowMapper<SinhVien>() {
+		return template.query("select * from sinhvien", new RowMapper<SinhVien>() {
 			public SinhVien mapRow(ResultSet rs, int row) throws SQLException {
 				SinhVien sv = new SinhVien();
 				sv.setId(rs.getInt(1));
