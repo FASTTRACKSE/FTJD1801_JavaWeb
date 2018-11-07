@@ -8,6 +8,6 @@
 </head>
 <body>
 	<a href="addForm">Thêm sinh viên</a>
-	<a href="viewAll">Xem danh sách sinh viên</a>
+	<a href="viewAll/1">Xem danh sách sinh viên</a>
 </body>
 </html>

@@ -8,7 +8,7 @@ public class SinhVien {
 	private String gioiTinh;
 	private String diaChi;
 	private String lopHoc;
-
+	private String anhThe;
 	public SinhVien() {
 		super();
 	}
@@ -80,4 +80,12 @@ public class SinhVien {
 		this.lopHoc = lopHoc;
 	}
 
+	public String getAnhThe() {
+		return anhThe;
+	}
+
+	public void setAnhThe(String anhThe) {
+		this.anhThe = anhThe;
+	}
+	
 }

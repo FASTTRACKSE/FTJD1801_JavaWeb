@@ -12,6 +12,7 @@
 </head>
 <body>
 	<h1>Danh sách sinh viên</h1>
+	<a class="btn btn-info" href="/QuanLySinhVienSpringMVC/addForm">Thêm sinh viên mới</a>
 	<table class="table table-striped">
 		<tr>
 			<th>Id</th>
@@ -21,6 +22,7 @@
 			<th>Giới tính</th>
 			<th>Địa chỉ</th>
 			<th>Lớp học</th>
+			<th>Ảnh thẻ</th>
 			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
@@ -33,12 +35,23 @@
 				<td>${sv.gioiTinh}</td>
 				<td>${sv.diaChi}</td>
 				<td>${sv.lopHoc}</td>
-				<td><a href="updateForm/${sv.id}">Edit</a></td>
-				<td><a href="delete/${sv.id}">Delete</a></td>
+				<td><img src="/QuanLySinhVienSpringMVC/images/${sv.anhThe}"
+					class="rounded" width="150" /></td>
+				<td><a href="/QuanLySinhVienSpringMVC/updateForm/${sv.id}">Edit</a></td>
+				<td><a href="/QuanLySinhVienSpringMVC/delete/${sv.id}">Delete</a></td>
 			</tr>
 		</c:forEach>
 	</table>
 	<br />
-	<a href="addForm">Thêm sinh viên mới</a>
+	<ul class="pagination" style="margin-left: 65%;">
+		<li class="page-item"><a class="page-link"
+			href="/QuanLySinhVienSpringMVC/viewAll/1">1</a></li>
+		<li class="page-item"><a class="page-link"
+			href="/QuanLySinhVienSpringMVC/viewAll/2">2</a></li>
+		<li class="page-item"><a class="page-link"
+			href="/QuanLySinhVienSpringMVC/viewAll/3">3</a></li>
+	</ul>
+
+
 </body>
 </html>
