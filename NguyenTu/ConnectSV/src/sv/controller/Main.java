@@ -78,7 +78,7 @@ public class Main extends HttpServlet {
 		request.getSession().setAttribute("student_list", dsSearchSinhVien);
 
 		// Step 2: get request dispatcher
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/SinhVien.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("SinhVien.jsp");
 
 		// Step 3: forward to the JSP
 		dispatcher.forward(request, response);

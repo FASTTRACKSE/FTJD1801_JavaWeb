@@ -7,7 +7,7 @@ import managerment.entity.monhoc.MonHoc;
 public interface HeDaoTao {
 
 		public String getThongTinThoiGianHoc();
-		public String getThongTinMonHoc();
+		
 		public String getThongTinHeDaoTao();
 		public List<MonHoc> getDanhSachMonHoc();
 }

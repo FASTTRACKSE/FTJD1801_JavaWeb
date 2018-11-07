@@ -66,7 +66,7 @@ public class ChuongTrinhDiHoc {
 		gvltWebFrontend.add(coPHP);
 		
 		
-		tgltCoBan.add(cotgJava);
+		tgltCoBan.add(cotgJava); 
 		tgltJavaCoBan.add(thaytgWeb);
 		tgltWebPHP.add(thaytgWeb);
 		tgltWebFrontend.add(thaytgTHVP);
