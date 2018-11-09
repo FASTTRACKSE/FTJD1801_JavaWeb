@@ -18,14 +18,14 @@ public class EmpDao {
 	}
 
 	public int save(Emp p) {
-		String sql = "INSERT INTO emp(name,salary,designation) VALUES(" + p.getName() + "," + p.getSalary() + ","
-				+ p.getDesignation() + ")";
+		String sql = "insert into emp(name,salary,designation) values('" + p.getName() + "'," + p.getSalary() + ",'"
+				+ p.getDesignation() + "')";
 		return template.update(sql);
 	}
 
 	public int update(Emp p) {
-		String sql = "update emp set name = " + p.getName() + ",salary=" + p.getSalary() + ",designation="
-				+ p.getDesignation() + " ";
+		String sql = "update emp set name='" + p.getName() + "', salary=" + p.getSalary() + ", designation='"
+				+ p.getDesignation() + "' where id=" + p.getId() + "";
 		return template.update(sql);
 	}
 
@@ -35,16 +35,13 @@ public class EmpDao {
 	}
 
 	public Emp getEmpById(int id) {
-		String sql = "select * from emp where id=" + id + "";
+		String sql = "select * from emp where id=?";
 		return template.queryForObject(sql, new Object[] { id }, new BeanPropertyRowMapper<Emp>(Emp.class));
 	}
 
 	public List<Emp> getEmployees() {
 		return template.query("select * from emp", new RowMapper<Emp>() {
-
-			@Override
 			public Emp mapRow(ResultSet rs, int row) throws SQLException {
-				// TODO Auto-generated method stub
 				Emp e = new Emp();
 				e.setId(rs.getInt(1));
 				e.setName(rs.getString(2));
@@ -52,7 +49,7 @@ public class EmpDao {
 				e.setDesignation(rs.getString(4));
 				return e;
 			}
-
 		});
 	}
+
 }

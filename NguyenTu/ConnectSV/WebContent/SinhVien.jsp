@@ -22,13 +22,14 @@
 						</div>
 					</div>
 				</div>
-			</form>
+			
 	<table class="table">
 		<tr>
 				
 				<td>Mã SV</td>
 				<td>Họ và tên</td>
 				<td>Năm sinh</td>
+				<td>Ảnh thờ</td>
 			</tr>
 		<c:forEach var="tempStudent" items="${student_list}">
 
@@ -37,6 +38,7 @@
 				<td>${tempStudent.iD}</td>
 				<td>${tempStudent.hoTen}</td>
 				<td>${tempStudent.date}</td>
+				<td><img alt="null" src="uploads/${tempStudent.image}" width="200px;"></td>
 				<td><h4><a href='update?iDUD=${tempStudent.iD}'>Edit </a><a href='remove?iDUD=${tempStudent.iD}' onclick="return confirm('Are you sure you want to delete this item?');"> Xóa</a> </h4></td>
 			</tr>
 
@@ -114,6 +116,7 @@
 						href="sv?page=${totalPage}">Trang cuối</a></li>
 				</c:if>
 			</ul>
+			</form>
 			
 </body>
 </html>

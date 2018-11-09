@@ -33,7 +33,7 @@ public class Add extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Add.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Add.jsp");
 		dispatcher.forward(request, response);
 	}
 

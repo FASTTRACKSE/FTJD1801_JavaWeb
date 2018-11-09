@@ -38,7 +38,7 @@ public class Remove extends HttpServlet {
 		SinhVien sv = studentDAO.selectSinhVien(id);
 		request.getSession().setAttribute("student", sv);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Remove.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("Remove.jsp");
 
 		dispatcher.forward(request, response);
 	}

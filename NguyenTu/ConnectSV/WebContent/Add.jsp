@@ -10,7 +10,7 @@
 <body>
 <div align="center">
 	<h1 >Add sinh viên</h1>
-	<form action="doAdd" method="post">
+	<form action="doAdd" method="post" enctype="multipart/form-data">
 		<label>Nhập id SV: </label><br>
 		<input type="text" name="iD" placeholder="Nhập id ......"><br>
 		<label>Nhập họ tên SV: </label><br>

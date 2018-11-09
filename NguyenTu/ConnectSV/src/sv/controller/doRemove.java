@@ -38,8 +38,9 @@ public class doRemove extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("iDUD"));
 		String hoTen = request.getParameter("hoTenUD");
 		String namSinh = request.getParameter("dateUD");
+		String link ="";
 
-		SinhVien sinhVien = new SinhVien(id, hoTen, namSinh);
+		SinhVien sinhVien = new SinhVien(id, hoTen, namSinh,link);
 		studentDAO.removeSinhVien(sinhVien);
 		response.sendRedirect("sv");
 	}
