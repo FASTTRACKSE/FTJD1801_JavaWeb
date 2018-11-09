@@ -41,8 +41,8 @@ public class SinhVienDao {
 		return template.queryForObject(sql, new Object[] { id }, new BeanPropertyRowMapper<SinhVien>(SinhVien.class));
 	}
 
-	public List<SinhVien> getDsSinhVien(int pageId, int total) {
-		return template.query("select * from sinhvien limit " + (pageId - 1) + ", " + total + "",
+	public List<SinhVien> getDsSinhVien(int pageId, int recordsPerPage) {
+		return template.query("select * from sinhvien limit " + (pageId - 1) + ", " + recordsPerPage + "",
 				new RowMapper<SinhVien>() {
 					public SinhVien mapRow(ResultSet rs, int row) throws SQLException {
 						SinhVien sv = new SinhVien();
@@ -57,5 +57,22 @@ public class SinhVienDao {
 						return sv;
 					}
 				});
+	}
+
+	public List<SinhVien> getNumberOfRows() {
+		return template.query("select * from sinhvien ", new RowMapper<SinhVien>() {
+			public SinhVien mapRow(ResultSet rs, int row) throws SQLException {
+				SinhVien sv = new SinhVien();
+				sv.setId(rs.getInt(1));
+				sv.setHoTen(rs.getString(2));
+				sv.setNamSinh(rs.getInt(3));
+				sv.setEmail(rs.getString(4));
+				sv.setGioiTinh(rs.getString(5));
+				sv.setDiaChi(rs.getString(6));
+				sv.setLopHoc(rs.getString(7));
+				sv.setAnhThe(rs.getString(8));
+				return sv;
+			}
+		});
 	}
 }

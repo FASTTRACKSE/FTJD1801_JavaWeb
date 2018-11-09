@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +37,9 @@ public class SinhVienController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView save(@ModelAttribute("emp") SinhVien sv, @RequestParam CommonsMultipartFile file,
 			HttpSession session) throws IOException {
+		if (!(sv.getHoTen().equals("") || sv.getNamSinh() == 0 || sv.getGioiTinh().equals("")
+				|| sv.getEmail().equals("") || sv.getDiaChi().equals("") || sv.getLopHoc().equals("")
+				)) {
 		if (file != null) {
 			String filename = file.getOriginalFilename();
 			byte[] bytes = file.getBytes();
@@ -45,24 +49,25 @@ public class SinhVienController {
 			stream.flush();
 			stream.close();
 			sv.setAnhThe(filename);
-		} else {
-			sv.setAnhThe("");
 		}
-		if (!(sv.getHoTen().equals("") || sv.getNamSinh() == 0 || sv.getGioiTinh().equals("")
-				|| sv.getEmail().equals("") || sv.getDiaChi().equals("") || sv.getLopHoc().equals("")
-				|| sv.getAnhThe().equals("")))
 			dao.save(sv);
+		}
 		return new ModelAndView("redirect:/viewAll/1");// will redirect to viewemp request mapping
 	}
 
 	@RequestMapping("/viewAll/{pageId}")
-	public ModelAndView viewAll(@PathVariable int pageId) {
-		int total = 3;
+	public ModelAndView viewAll(@PathVariable int pageId,Model model) {
+		int recordsPerPage = 3;
+		int recordStart = 1;
 		if (pageId == 1) {
 		} else {
-			pageId = (pageId - 1) * total + 1;
+			recordStart = (pageId - 1) * recordsPerPage + 1;
 		}
-		List<SinhVien> listSV = dao.getDsSinhVien(pageId, total);
+		List<SinhVien> list = dao.getNumberOfRows();
+		int nOfPages = (int) Math.ceil(list.size() / recordsPerPage);
+		List<SinhVien> listSV = dao.getDsSinhVien(recordStart, recordsPerPage);
+		model.addAttribute("noOfPages",nOfPages);
+		model.addAttribute("pageid",pageId);
 		return new ModelAndView("viewAll", "list", listSV);
 	}
 

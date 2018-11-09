@@ -43,15 +43,70 @@
 		</c:forEach>
 	</table>
 	<br />
-	<ul class="pagination" style="margin-left: 65%;">
-		<li class="page-item"><a class="page-link"
-			href="/QuanLySinhVienSpringMVC/viewAll/1">1</a></li>
-		<li class="page-item"><a class="page-link"
-			href="/QuanLySinhVienSpringMVC/viewAll/2">2</a></li>
-		<li class="page-item"><a class="page-link"
-			href="/QuanLySinhVienSpringMVC/viewAll/3">3</a></li>
-	</ul>
+<ul class="pagination" style="margin-left: 65%;">
+		<c:if test="${pageid != 1}">
+			<li class="page-item"><a class="page-link"
+				href="/QuanLySinhVienSpringMVC/viewAll/1">Trang đầu</a></li>
+			<li class="page-item"><a class="page-link"
+				href="/QuanLySinhVienSpringMVC/viewAll/${pageid -1 }">Trang trước</a></li>
+		</c:if>
+		<c:choose>
+			<c:when test="${noOfPages eq 1}">
+				<li class="page-item active"><a class="page-link" href="#">1</a></li>
+			</c:when>
+			<c:when test="${noOfPages eq 2}">
+				<c:choose>
+					<c:when test="${pageid eq 1}">
+						<li class="page-item active"><a class="page-link"
+							href="/QuanLySinhVienSpringMVC/viewAll/${pageid}">1</a></li>
+						<li class="page-item"><a class="page-link"
+							href="/QuanLySinhVienSpringMVC/viewAll/${pageid+1}">2</a></li>
+					</c:when>
+					<c:when test="${pageid eq 2}">
+						<li class="page-item "><a class="page-link"
+							href="/QuanLySinhVienSpringMVC/viewAll/${pageid-1}">1</a></li>
+						<li class="page-item active"><a class="page-link"
+							href="/QuanLySinhVienSpringMVC/viewAll/${pageid} ">2</a></li>
+					</c:when>
+				</c:choose>
 
+			</c:when>
+			<c:otherwise>
+				<c:choose>
+					<c:when test="${pageid eq 1}">
+						<li class="page-item active"><a class="page-link"
+							href="/QuanLySinhVienSpringMVC/viewAll/${pageid} ">${pageid}</a></li>
+						<li class="page-item"><a class="page-link"
+							href="/QuanLySinhVienSpringMVC/viewAll/${pageid+1} ">${pageid+1}</a></li>
+						<li class="page-item"><a class="page-link"
+							href="/QuanLySinhVienSpringMVC/viewAll/${pageid+2} ">${pageid+2}</a>
+					</c:when>
+					<c:when test="${pageid eq noOfPages}">
+						<li class="page-item"><a class="page-link"
+							href="/QuanLySinhVienSpringMVC/viewAll/${pageid-2} ">${pageid-2}</a></li>
+						<li class="page-item"><a class="page-link"
+							href="/QuanLySinhVienSpringMVC/viewAll/${pageid-1} ">${pageid-1}</a></li>
+						<li class="page-item active"><a class="page-link"
+							href="/QuanLySinhVienSpringMVC/viewAll/${pageid} ">${pageid}</a>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item"><a class="page-link"
+							href="/QuanLySinhVienSpringMVC/viewAll/${pageid-1} ">${pageid-1}</a></li>
+						<li class="page-item active"><a class="page-link"
+							href="/QuanLySinhVienSpringMVC/viewAll/${pageid} ">${pageid}</a></li>
+						<li class="page-item"><a class="page-link"
+							href="/QuanLySinhVienSpringMVC/viewAll/${pageid+1} ">${pageid+1}</a></li>
+					</c:otherwise>
+				</c:choose>
+			</c:otherwise>
+		</c:choose>
+		<c:if test="${pageid lt noOfPages}">
+			<li class="page-item"><a class="page-link"
+				href="/QuanLySinhVienSpringMVC/viewAll/${pageid+1}">Trang sau</a></li>
+			<li class="page-item"><a class="page-link"
+				href="/QuanLySinhVienSpringMVC/viewAll/${noOfPages} ">Trang cuối</a></li>
+		</c:if>
+	</ul>
 
 </body>
 </html>

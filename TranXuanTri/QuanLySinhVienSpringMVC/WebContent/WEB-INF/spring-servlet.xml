@@ -11,7 +11,8 @@
                            http://www.springframework.org/schema/context/spring-context.xsd ">
 
 	<mvc:annotation-driven />
-	<mvc:resources mapping="/images/**" location="file:E:/upload/" />
+	<mvc:resources mapping="/images/**"
+		location="file:E:/upload/" />
 	<context:component-scan
 		base-package="quanlysinhvien.controller" />
 	<bean
