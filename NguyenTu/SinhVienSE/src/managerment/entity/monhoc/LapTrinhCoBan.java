@@ -14,7 +14,7 @@ public class LapTrinhCoBan implements MonHoc {
 		// TODO Auto-generated method stub
 		return "Lập trình cơ bản";
 	}
-
+ 
 
 	@Override
 	public List<GiangVien> getDanhSachGiangVien() {
