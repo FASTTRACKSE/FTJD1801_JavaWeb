@@ -5,6 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -18,9 +20,9 @@
 		Giới tính:<form:input path="gioiTinh" /><br>
 		Địa chỉ:<form:input path="diaChi" /><br>
 		Lớp học:<form:input path="lopHoc" /><br>
-		Chọn ảnh: <input type="file" class="btn btn-info" name="file"><br>
-		<input type="submit" value="Save" />
+		Chọn ảnh: <input type="file"  name="file"><br>
+		<input class="btn btn-info" type="submit" value="Save" />
 	</form:form>
-	<a href="/QuanLySinhVienSpringMVC/viewAll/1">Cancel</a>
+	<a class="btn btn-info" href="/QuanLySinhVienSpringMVC/viewAll/1">Cancel</a>
 </body>
 </html>

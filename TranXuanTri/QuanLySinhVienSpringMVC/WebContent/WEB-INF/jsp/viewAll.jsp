@@ -7,12 +7,23 @@
 <head>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+	crossorigin="anonymous">
 <meta charset="UTF-8">
 <title>Quản lý sinh viên</title>
 </head>
 <body>
 	<h1>Danh sách sinh viên</h1>
 	<a class="btn btn-info" href="/QuanLySinhVienSpringMVC/addForm">Thêm sinh viên mới</a>
+	<form action="/QuanLySinhVienSpringMVC/search" method = "POST"> 
+		<input type="text" name="searchTerm"
+			placeholder="Tìm kiếm...">
+		<button class="btn btn-default" type="submit">
+			<i class="fas fa-search"></i>
+		</button>
+	</form>
 	<table class="table table-striped">
 		<tr>
 			<th>Id</th>
@@ -23,8 +34,8 @@
 			<th>Địa chỉ</th>
 			<th>Lớp học</th>
 			<th>Ảnh thẻ</th>
-			<th>Edit</th>
-			<th>Delete</th>
+			<th>Sửa</th>
+			<th>Xóa</th>
 		</tr>
 		<c:forEach var="sv" items="${list}">
 			<tr>
@@ -37,8 +48,8 @@
 				<td>${sv.lopHoc}</td>
 				<td><img src="/QuanLySinhVienSpringMVC/images/${sv.anhThe}"
 					class="rounded" width="150" /></td>
-				<td><a href="/QuanLySinhVienSpringMVC/updateForm/${sv.id}">Edit</a></td>
-				<td><a href="/QuanLySinhVienSpringMVC/delete/${sv.id}">Delete</a></td>
+				<td><a href="/QuanLySinhVienSpringMVC/updateForm/${sv.id}">Sửa</a></td>
+				<td><a href="/QuanLySinhVienSpringMVC/deleteForm/${sv.id}">Xóa</a></td>
 			</tr>
 		</c:forEach>
 	</table>

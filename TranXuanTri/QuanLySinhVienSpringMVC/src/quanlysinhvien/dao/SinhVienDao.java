@@ -41,10 +41,14 @@ public class SinhVienDao {
 		return template.queryForObject(sql, new Object[] { id }, new BeanPropertyRowMapper<SinhVien>(SinhVien.class));
 	}
 
-	public List<SinhVien> getDsSinhVien(int pageId, int recordsPerPage) {
-		return template.query("select * from sinhvien limit " + (pageId - 1) + ", " + recordsPerPage + "",
+	public List<SinhVien> getDsSinhVien(String name, int start, int total) {
+		return template.query(
+				"Select * from sinhvien where hoTen like '%" + name + "%' limit " + start + "," + total + " ",
 				new RowMapper<SinhVien>() {
+
+					@Override
 					public SinhVien mapRow(ResultSet rs, int row) throws SQLException {
+						// TODO Auto-generated method stub
 						SinhVien sv = new SinhVien();
 						sv.setId(rs.getInt(1));
 						sv.setHoTen(rs.getString(2));
@@ -56,11 +60,12 @@ public class SinhVienDao {
 						sv.setAnhThe(rs.getString(8));
 						return sv;
 					}
+
 				});
 	}
 
-	public List<SinhVien> getNumberOfRows() {
-		return template.query("select * from sinhvien ", new RowMapper<SinhVien>() {
+	public List<SinhVien> getNumberOfRowSearch(String name) {
+		return template.query("select * from sinhvien where hoTen like \"%" + name + "%\"", new RowMapper<SinhVien>() {
 			public SinhVien mapRow(ResultSet rs, int row) throws SQLException {
 				SinhVien sv = new SinhVien();
 				sv.setId(rs.getInt(1));

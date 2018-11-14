@@ -28,46 +28,48 @@ public class SinhVienController {
 
 	@Autowired
 	SinhVienDao dao;
-
+	String search = "";
 	@RequestMapping("/addForm")
 	public ModelAndView showForm() {
 		return new ModelAndView("addForm", "command", new SinhVien());
 	}
 
+	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView save(@ModelAttribute("emp") SinhVien sv, @RequestParam CommonsMultipartFile file,
 			HttpSession session) throws IOException {
 		if (!(sv.getHoTen().equals("") || sv.getNamSinh() == 0 || sv.getGioiTinh().equals("")
-				|| sv.getEmail().equals("") || sv.getDiaChi().equals("") || sv.getLopHoc().equals("")
-				)) {
-		if (file != null) {
-			String filename = file.getOriginalFilename();
-			byte[] bytes = file.getBytes();
-			BufferedOutputStream stream = new BufferedOutputStream(
-					new FileOutputStream(new File(UPLOAD_DIRECTORY + File.separator + filename)));
-			stream.write(bytes);
-			stream.flush();
-			stream.close();
-			sv.setAnhThe(filename);
-		}
+				|| sv.getEmail().equals("") || sv.getDiaChi().equals("") || sv.getLopHoc().equals(""))) {
+			if (file != null) {
+				String filename = file.getOriginalFilename();
+				byte[] bytes = file.getBytes();
+				BufferedOutputStream stream = new BufferedOutputStream(
+						new FileOutputStream(new File(UPLOAD_DIRECTORY + File.separator + filename)));
+				stream.write(bytes);
+				stream.flush();
+				stream.close();
+				sv.setAnhThe(filename);
+			}
 			dao.save(sv);
 		}
 		return new ModelAndView("redirect:/viewAll/1");// will redirect to viewemp request mapping
 	}
-
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public ModelAndView search(@RequestParam("searchTerm") String searchValue) {
+		search = searchValue;
+		return new ModelAndView("redirect:/viewAll/1");
+		
+	}
 	@RequestMapping("/viewAll/{pageId}")
-	public ModelAndView viewAll(@PathVariable int pageId,Model model) {
+	public ModelAndView viewAll(@PathVariable int pageId, Model model) {
 		int recordsPerPage = 3;
-		int recordStart = 1;
-		if (pageId == 1) {
-		} else {
-			recordStart = (pageId - 1) * recordsPerPage + 1;
-		}
-		List<SinhVien> list = dao.getNumberOfRows();
-		int nOfPages = (int) Math.ceil(list.size() / recordsPerPage);
-		List<SinhVien> listSV = dao.getDsSinhVien(recordStart, recordsPerPage);
-		model.addAttribute("noOfPages",nOfPages);
-		model.addAttribute("pageid",pageId);
+		int	recordStart = (pageId - 1) * recordsPerPage;
+	
+		List<SinhVien> list = dao.getNumberOfRowSearch(search);
+		int nOfPages = (int) Math.ceil((double) list.size() / recordsPerPage);
+		List<SinhVien> listSV = dao.getDsSinhVien(search,recordStart, recordsPerPage);
+		model.addAttribute("noOfPages", nOfPages);
+		model.addAttribute("pageid", pageId);
 		return new ModelAndView("viewAll", "list", listSV);
 	}
 
@@ -76,7 +78,11 @@ public class SinhVienController {
 		SinhVien sv = dao.getEmpById(id);
 		return new ModelAndView("updateForm", "command", sv);
 	}
-
+	@RequestMapping("/deleteForm/{id}")
+	public ModelAndView deleteForm(@PathVariable int id) {
+		SinhVien sv = dao.getEmpById(id);
+		return new ModelAndView("deleteForm", "command", sv);
+	}
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public ModelAndView updateSave(@ModelAttribute("sv") SinhVien sv, @RequestParam CommonsMultipartFile file,
 			HttpSession session) throws Exception {
@@ -94,9 +100,10 @@ public class SinhVienController {
 		return new ModelAndView("redirect:/viewAll/1");
 	}
 
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	public ModelAndView delete(@PathVariable int id) {
-		dao.delete(id);
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public ModelAndView delete(@ModelAttribute("sv") SinhVien sv) {
+		dao.delete(sv.getId());
 		return new ModelAndView("redirect:/viewAll/1");
 	}
+
 }
