@@ -47,7 +47,7 @@
 				<td>${sv.diaChi}</td>
 				<td>${sv.lopHoc}</td>
 				<td><img src="/QuanLySinhVienSpringMVC/images/${sv.anhThe}"
-					class="rounded" width="150" /></td>
+					class="rounded" width="50" height="50" /></td>
 				<td><a href="/QuanLySinhVienSpringMVC/updateForm/${sv.id}">Sửa</a></td>
 				<td><a href="/QuanLySinhVienSpringMVC/deleteForm/${sv.id}">Xóa</a></td>
 			</tr>
