@@ -21,6 +21,7 @@
 		Địa chỉ:<form:input path="diaChi" /><br>
 		Lớp học:<form:input path="lopHoc" /><br>
 		Chọn ảnh: <input type="file"  name="file"><br>
+		<form:hidden path="anhThe" />
 		<input class="btn btn-info" type="submit" value="Save" />
 	</form:form>
 	<a class="btn btn-info" href="/QuanLySinhVienSpringMVC/viewAll/1">Cancel</a>

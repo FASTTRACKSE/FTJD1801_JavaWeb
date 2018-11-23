@@ -16,7 +16,7 @@
 	crossorigin="anonymous">
 <style type="text/css">
 img {
-	width: 45px;
+	width: 50px;
 	height: 60px;
 }
 </style>
@@ -29,8 +29,8 @@ img {
 			<form action="/StudentManagement_SpringMVC/viewSearch" method="post">
 				<div style="width: 300px; float: left;">
 					<div class="input-group mb-3">
-						<input type="text" name="searchValue" class="form-control" value="${nameValue}"
-							placeholder="input name...">
+						<input type="text" name="searchValue" class="form-control"
+							value="${nameValue}" placeholder="input name...">
 						<div class="input-group-append">
 							<button class="btn btn-outline-secondary" type="submit"
 								id="button-addon2">
@@ -46,10 +46,17 @@ img {
 						<td>${tempStudent.maSV}</td>
 						<td>${tempStudent.tenSV}</td>
 						<td>${tempStudent.namSinh}</td>
-						<td>${tempStudent.avatar}</td>
-						<td><a href="editstudent/${tempStudent.maSV}"><i
+						<c:if test="${empty tempStudent.avatar}">
+							<td>...</td>
+						</c:if>
+						<c:if test="${not empty tempStudent.avatar}">
+							<td><img
+								src="/StudentManagement_SpringMVC/images/${tempStudent.avatar}"></td>
+						</c:if>
+						<td><a
+							href="/StudentManagement_SpringMVC/editstudent/${tempStudent.maSV}"><i
 								class="fas fa-edit"></i></a> <a
-							href="deletestudent/${tempStudent.maSV}"><i
+							href="/StudentManagement_SpringMVC/deletestudent/${tempStudent.maSV}"><i
 								class="fas fa-trash"></i></a></td>
 					</tr>
 				</c:forEach>
@@ -63,12 +70,13 @@ img {
 					</tr>
 				</thead>
 			</table>
-
 			<ul class="pagination">
 				<c:if test="${crPage != 1}">
-					<li class="page-item"><a class="page-link" href="/StudentManagement_SpringMVC/paging/1">Trang đầu</a></li>
 					<li class="page-item"><a class="page-link"
-						href="/StudentManagement_SpringMVC/paging/${crPage-1}">Trang trước</a></li>
+						href="/StudentManagement_SpringMVC/paging/1">Trang đầu</a></li>
+					<li class="page-item"><a class="page-link"
+						href="/StudentManagement_SpringMVC/paging/${crPage-1}">Trang
+							trước</a></li>
 				</c:if>
 
 				<c:choose>
@@ -128,14 +136,17 @@ img {
 
 				<c:if test="${crPage lt totalPage}">
 					<li class="page-item"><a class="page-link"
-						href="/StudentManagement_SpringMVC/paging/${crPage+1}">Trang sau</a></li>
+						href="/StudentManagement_SpringMVC/paging/${crPage+1}">Trang
+							sau</a></li>
 					<li class="page-item"><a class="page-link"
-						href="/StudentManagement_SpringMVC/paging/${totalPage}">Trang cuối</a></li>
+						href="/StudentManagement_SpringMVC/paging/${totalPage}">Trang
+							cuối</a></li>
 				</c:if>
 			</ul>
 
 			<h3 style='float: left;'>
-				<a href='/StudentManagement_SpringMVC/add' class="btn btn-primary btn-lg active">Thêm</a>
+				<a href='/StudentManagement_SpringMVC/add'
+					class="btn btn-primary btn-lg active">Thêm</a>
 			</h3>
 		</div>
 	</center>

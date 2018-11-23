@@ -17,7 +17,7 @@
 	<div style="width: 300px; margin: 10px;">
 		<h1>Cập nhật thông tin</h1>
 		<form:form method="POST"
-			action="/StudentManagement_SpringMVC/editsave">
+			action="/StudentManagement_SpringMVC/editsave" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td></td>
@@ -33,9 +33,12 @@
 				</tr>
 				<tr>
 					<td>Avatar :</td>
-					<td><form:input path="avatar" class="form-control" /></td>
+					<td><input type="file" name="file" class="btn btn-primary"></td>
 				</tr>
-
+				<tr>
+					<td><img alt="null" src="/StudentManagement_SpringMVC/images/${command.avatar}" width="100px" height="120px;"><br><br></td>
+					<td><form:hidden path="avatar" class="form-control" /></td>
+				</tr>
 				<tr>
 					<td></td>
 					<td><input type="submit" value="Cập nhật"
