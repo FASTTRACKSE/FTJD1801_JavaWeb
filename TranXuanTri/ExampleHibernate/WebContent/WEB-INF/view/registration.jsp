@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Employee Registration Form</title>
-<meta charset="ISO-8859-1">
+
 <style>
 .error {
 	color: #ff0000;

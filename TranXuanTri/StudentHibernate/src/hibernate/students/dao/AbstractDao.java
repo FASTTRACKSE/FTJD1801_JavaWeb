@@ -1,4 +1,4 @@
-package hibernate.dao;
+package hibernate.students.dao;
 
  
 import java.io.Serializable;
@@ -40,6 +40,7 @@ public abstract class AbstractDao<PK extends Serializable, T> {
     }
      
 
+	@SuppressWarnings("deprecation")
 	protected Criteria createEntityCriteria(){
         return getSession().createCriteria(persistentClass);
     }

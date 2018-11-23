@@ -20,14 +20,16 @@ public class EmployeeDaoImpl extends AbstractDao<Integer, Employee> implements E
         persist(employee);
     }
  
-    public void deleteEmployeeBySsn(String ssn) {
-        Query query = getSession().createSQLQuery("delete from Employee where ssn = :ssn");
+    @SuppressWarnings("deprecation")
+	public void deleteEmployeeBySsn(String ssn) {
+        @SuppressWarnings("rawtypes")
+		Query query = getSession().createSQLQuery("delete from Employee where ssn = :ssn");
         query.setString("ssn", ssn);
         query.executeUpdate();
     }
  
     @SuppressWarnings("unchecked")
-    public List<Employee> findAllEmployees() {
+	public List<Employee> findAllEmployees() {
         Criteria criteria = createEntityCriteria();
         return (List<Employee>) criteria.list();
     }
