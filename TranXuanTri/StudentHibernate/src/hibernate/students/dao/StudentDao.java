@@ -13,4 +13,10 @@ public interface StudentDao {
 
 	List<Student> findAllStudents();
 
+	List<Student> findAllStudents(String search);
+
+	List<Student> getStudents(int fromIndex, int toIndex);
+
+	List<Student> getStudents(int fromIndex, int toIndex, String search);
+
 }

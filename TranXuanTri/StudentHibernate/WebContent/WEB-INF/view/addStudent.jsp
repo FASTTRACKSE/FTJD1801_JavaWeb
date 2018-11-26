@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Form Add Student</title>
 <style>
@@ -15,7 +17,17 @@
 </style>
 </head>
 <body>
-	<h2>Add New Student</h2>
+	<c:choose>
+		<c:when test="${edit}">
+			<h2>Update Student</h2>
+		</c:when>
+		<c:when test="${delete}">
+			<h2>Delete Student</h2>
+		</c:when>
+		<c:otherwise>
+			<h2>Add New Student</h2>
+		</c:otherwise>
+	</c:choose>
 	<form:form method="POST" modelAttribute="student"
 		enctype="multipart/form-data">
 		<form:input type="hidden" path="id" id="id" />
@@ -51,19 +63,32 @@
 				<td><form:errors path="stuClass" cssClass="error" /></td>
 			</tr>
 		</table>
-		<label for="avatar"> Avatar:  </label>
-		<input type="file" name="file" id="stuClass"/>
-		<form:errors path="avatar" cssClass="error" />
-		<br>
 		<c:choose>
 			<c:when test="${edit}">
-				<input type="submit" value="Update" />
+				<label for="avatar"> Avatar: </label>
+				<input type="file" name="file" id="stuClass" />
+				<form:errors path="avatar" cssClass="error" />
+				<br>
+				<form:input type="hidden" path="avatar" id="avatar" />
+				<input class="btn btn-info" type="submit" value="Update" />
+				<a href="<c:url value='/list' />" class="btn btn-info">Cancel</a>
+			</c:when>
+			<c:when test="${delete}">
+				Avatar: <img src="/StudentHibernate/images/${student.avatar}"
+					class="rounded" width="100" height="100" />
+				<br>
+				<input class="btn btn-info" type="submit" value="Delete" />
+				<a href="<c:url value='/list' />" class="btn btn-info">Cancel</a>
 			</c:when>
 			<c:otherwise>
-				<input type="submit" value="Register" />
+				<label for="avatar"> Avatar: </label>
+				<input type="file" name="file" id="stuClass" />
+				<form:errors path="avatar" cssClass="error" />
+				<br>
+				<input class="btn btn-info" type="submit" value="Register" />
+				<a href="<c:url value='/list' />" class="btn btn-info">Cancel</a>
 			</c:otherwise>
 		</c:choose>
 	</form:form>
-	<a href="<c:url value='/list' />">Cancel</a>
 </body>
 </html>

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -28,7 +29,7 @@ import hibernate.students.service.StudentService;
 @RequestMapping("/")
 public class AppController {
 	private static final String UPLOAD_DIRECTORY = "E:\\upload";
-
+	String search = "";
 	@Autowired
 	StudentService service;
 
@@ -38,10 +39,52 @@ public class AppController {
 	/*
 	 * This method will list all existing employees.
 	 */
+	@RequestMapping(value = { "search" }, method = RequestMethod.POST)
+	public String search(@PathParam(value = "search") String searchName) {
+		search = searchName;
+		return "redirect:/list/1";
+	}
+
+	@RequestMapping(value = { "list/{page}" }, method = RequestMethod.GET)
+	public String listStudents(ModelMap model, @PathVariable int page) {
+		int recordsPerPage = 3;
+		int recordStart = (page - 1) * recordsPerPage;
+		int recordEnd = recordStart + recordsPerPage;
+
+		List<Student> listAllStudents = service.findAllStudents(search);
+		if (listAllStudents.size() < recordEnd) {
+			recordEnd = listAllStudents.size();
+		}
+		List<Student> listStudents = service.getStudents(recordStart, recordEnd, search);
+
+		int nOfPages = (int) Math.ceil((double) listAllStudents.size() / recordsPerPage);
+
+		model.addAttribute("noOfPages", nOfPages);
+		model.addAttribute("pageid", page);
+		model.addAttribute("listStudents", listStudents);
+
+		return "allStudents";
+	}
+
 	@RequestMapping(value = { "/", "list" }, method = RequestMethod.GET)
 	public String listStudents(ModelMap model) {
-		List<Student> listStudents = service.findAllStudents();
+		int page = 1;
+		int recordsPerPage = 3;
+		int recordStart = (page - 1) * recordsPerPage;
+		int recordEnd = recordStart + recordsPerPage;
+
+		List<Student> listAllStudents = service.findAllStudents();
+		if (listAllStudents.size() < recordEnd) {
+			recordEnd = listAllStudents.size();
+		}
+		List<Student> listStudents = service.getStudents(recordStart, recordEnd);
+
+		int nOfPages = (int) Math.ceil((double) listAllStudents.size() / recordsPerPage);
+
+		model.addAttribute("noOfPages", nOfPages);
+		model.addAttribute("pageid", page);
 		model.addAttribute("listStudents", listStudents);
+
 		return "allStudents";
 	}
 
@@ -128,17 +171,22 @@ public class AppController {
 			student.setAvatar(avatar);
 		}
 		service.updateStudent(student);
-		model.addAttribute("success", "Student " + student.getName() + " updated successfully");
 		return "redirect:/list";
 	}
 
 	/*
 	 * This method will delete an employee by it's id value.
 	 */
-	@RequestMapping(value = { "/delete-{id}-student" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/delete-{id}-student" }, method = RequestMethod.POST)
 	public String delete(@PathVariable int id) {
 		service.deleteById(id);
 		return "redirect:/list";
 	}
-
+	@RequestMapping(value = { "/delete-{id}-student" }, method = RequestMethod.GET)
+	public String delete(@PathVariable int id, ModelMap model) {
+		Student student = service.findById(id);
+		model.addAttribute("student", student);
+		model.addAttribute("delete", true);
+		return "addStudent";
+	}
 }

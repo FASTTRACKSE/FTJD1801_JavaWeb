@@ -14,7 +14,13 @@ public interface StudentService {
 	void deleteById(int id);
 
 	List<Student> findAllStudents();
+	
+	List<Student> findAllStudents(String search);
 
 	boolean isStudentIdUnique(Integer id);
+
+	List<Student> getStudents(int fromIndex, int toIndex);
+	
+	List<Student> getStudents(int fromIndex, int toIndex,String search);
 
 }

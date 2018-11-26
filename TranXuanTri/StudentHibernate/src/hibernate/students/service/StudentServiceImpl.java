@@ -50,7 +50,20 @@ public class StudentServiceImpl implements StudentService{
 	public List<Student> findAllStudents() {
 		return dao.findAllStudents();
 	}
+	
+	@Override
+	public List<Student> findAllStudents(String search) {
+		return dao.findAllStudents(search);
+	}
 
+	@Override
+	public 	List<Student> getStudents(int fromIndex, int toIndex) {
+		return dao.getStudents(fromIndex, toIndex);
+	}
+	@Override
+	public 	List<Student> getStudents(int fromIndex, int toIndex,String search) {
+		return dao.getStudents(fromIndex, toIndex,search);
+	}
 	@Override
 	public boolean isStudentIdUnique(Integer id) {
         Student student = findById(id);
