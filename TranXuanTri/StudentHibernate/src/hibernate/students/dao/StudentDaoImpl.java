@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import hibernate.students.entity.Student;
@@ -46,7 +45,6 @@ public class StudentDaoImpl extends AbstractDao<Integer, Student> implements Stu
 	@Override
 	public List<Student> getStudents(int fromIndex, int toIndex) {
 		Criteria criteria = createEntityCriteria();
-
 		return (List<Student>) criteria.list().subList(fromIndex, toIndex);
 	}
 
@@ -56,12 +54,5 @@ public class StudentDaoImpl extends AbstractDao<Integer, Student> implements Stu
 		Criterion cond = Restrictions.ilike("name", "%" + search + "%");
 		criteria.add(cond);
 		return (List<Student>) criteria.list().subList(fromIndex, toIndex);
-	}
-
-	public List<Student> getSearchResult(String searchKeyword) {
-		@SuppressWarnings("unchecked")
-		Query<Student> query = getSession()
-				.createSQLQuery(" select * from student where name LIKE \"%" + searchKeyword + "%\"");
-		return query.getResultList();
 	}
 }
