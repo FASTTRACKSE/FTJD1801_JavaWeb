@@ -13,14 +13,21 @@
 <body>
 	<h1>Thêm sinh viên</h1>
 	<form:form method="POST" action="save" enctype="multipart/form-data">
-		Họ tên:<form:input path="hoTen" /><br>
-		Năm sinh:<form:input path="namSinh" /><br>
-		Email:<form:input path="email" /><br>
-		Giới tính:<form:input path="gioiTinh" /><br>
-		Địa chỉ:<form:input path="diaChi" /><br>
-		Lớp học:<form:input path="lopHoc" /><br>
-		Chọn ảnh: <input type="file"  name="file"><br>
-		<input class="btn btn-info" type="submit"  value="Save" />
+		Họ tên:<form:input path="hoTen" />
+		<br>
+		Năm sinh:<form:input path="namSinh" />
+		<br>
+		Email:<form:input path="email" />
+		<br>
+		Giới tính:<form:input path="gioiTinh" />
+		<br>
+		Địa chỉ:<form:input path="diaChi" />
+		<br>
+		Lớp học:<form:input path="lopHoc" />
+		<br>
+		Chọn ảnh: <input type="file" name="file">
+		<br>
+		<input class="btn btn-info" type="submit" value="Save" />
 	</form:form>
 	<a class="btn btn-info" href="viewAll/1">Cancel</a>
 </body>

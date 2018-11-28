@@ -10,16 +10,13 @@
 </head>
 <body>
 	<h1>Edit Sinh Viên</h1>
-	<form:form method="POST" action="/editsave">
+	<form:form method="POST" action="/sinhviencrud_springmvc/editsv" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td></td>
 				<td><form:hidden path="id" /></td>
 			</tr>
-			<tr>
-				<td>Mã sinh viên :</td>
-				<td><form:input path="maSv" /></td>
-			</tr>
+			
 			<tr>
 				<td>Tên sinh viên :</td>
 				<td><form:input path="tenSv" /></td>
@@ -32,10 +29,7 @@
 				<td>Email :</td>
 				<td><form:input path="email" /></td>
 			</tr>
-			<tr>
-				<td>Giới tính :</td>
-				<td><form:input path="gioiTinh" /></td>
-			</tr>
+			
 			<tr>
 				<td>Địa chỉ :</td>
 				<td><form:input path="diaChi" /></td>
@@ -45,8 +39,12 @@
 				<td><form:input path="lop" /></td>
 			</tr>
 			<tr>
-				<td>Ảnh thẻ :</td>
-				<td><form:input path="image" /></td>
+					<td>Avatar :</td>
+					<td><input type="file" name="file" class="btn btn-primary"></td>
+				</tr>
+			<tr>
+				<td> <img alt="null" src="/sinhviencrud_springmvc/images/${command.image}" width="100px" height="120px;"><br><br></td>
+				<td><form:hidden path="image" class="form-control"/></td>
 			</tr>
 
 			<tr>

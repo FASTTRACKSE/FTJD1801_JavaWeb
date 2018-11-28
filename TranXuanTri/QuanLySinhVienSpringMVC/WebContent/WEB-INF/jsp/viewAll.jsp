@@ -10,7 +10,7 @@
 	<link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-	crossorigin="anonymous">
+	crossorigin="anonymous" />
 <meta charset="UTF-8">
 <title>Quản lý sinh viên</title>
 </head>
@@ -47,19 +47,20 @@
 				<td>${sv.diaChi}</td>
 				<td>${sv.lopHoc}</td>
 				<td><img src="/QuanLySinhVienSpringMVC/images/${sv.anhThe}"
-					class="rounded" width="150" /></td>
+					class="rounded" width="50" height="50" /></td>
 				<td><a href="/QuanLySinhVienSpringMVC/updateForm/${sv.id}">Sửa</a></td>
 				<td><a href="/QuanLySinhVienSpringMVC/deleteForm/${sv.id}">Xóa</a></td>
 			</tr>
 		</c:forEach>
 	</table>
 	<br />
-<ul class="pagination" style="margin-left: 65%;">
+	<ul class="pagination" style="margin-left: 65%;">
 		<c:if test="${pageid != 1}">
 			<li class="page-item"><a class="page-link"
 				href="/QuanLySinhVienSpringMVC/viewAll/1">Trang đầu</a></li>
 			<li class="page-item"><a class="page-link"
-				href="/QuanLySinhVienSpringMVC/viewAll/${pageid -1 }">Trang trước</a></li>
+				href="/QuanLySinhVienSpringMVC/viewAll/${pageid -1 }">Trang
+					trước</a></li>
 		</c:if>
 		<c:choose>
 			<c:when test="${noOfPages eq 1}">
