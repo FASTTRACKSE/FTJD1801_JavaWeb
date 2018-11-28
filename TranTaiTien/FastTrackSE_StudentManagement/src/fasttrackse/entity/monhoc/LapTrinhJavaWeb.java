@@ -19,7 +19,7 @@ public class LapTrinhJavaWeb implements MonHoc {
 	public List<GiangVien> getTrogiang() {
 		return trogiang;
 	}
-
+ 
 	public void setTrogiang(List<GiangVien> trogiang) {
 		this.trogiang = trogiang;
 	}

@@ -1,6 +1,6 @@
 package sinhvien.entity.giangvien;
 
-public class CoVan implements GiangVien{
+public class CoVan implements GiangVien {
 
 	@Override
 	public String getGiangVien() {

@@ -23,7 +23,7 @@ public class LapTrinhWebPHP implements MonHoc{
 	public void setTrogiang(List<GiangVien> trogiang) {
 		this.trogiang = trogiang;
 	}
-
+ 
 	@Override
 	public String getTenMonHoc() {
 		// TODO Auto-generated method stub

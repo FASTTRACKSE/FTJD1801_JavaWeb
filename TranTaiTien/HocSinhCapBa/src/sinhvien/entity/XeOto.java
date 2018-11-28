@@ -1,6 +1,6 @@
 package sinhvien.entity;
 
-public class XeOto implements PhuongTien{
+public class XeOto implements PhuongTien {
 	String thongTinPhuongTien = "Đi xe oto, Ngồi máy lạnh, Đi 15p, Tốn 50k tiền xăng, 10k gửi xe";
 
 	public String getThongTinPhuongTien() {
@@ -10,5 +10,5 @@ public class XeOto implements PhuongTien{
 	public void setThongTinPhuongTien(String thongTinPhuongTien) {
 		this.thongTinPhuongTien = thongTinPhuongTien;
 	}
-	
+
 }
