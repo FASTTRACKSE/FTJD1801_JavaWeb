@@ -1,6 +1,9 @@
 package doan.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -17,8 +20,9 @@ import doan.service.HangHoaService;
 @RequestMapping("/Client/TrangRau")
 public class TrangRauController {
 
-	@SuppressWarnings("unused")
-	private static final String UPLOAD_DIRECTORY = "E:\\upload";
+	ArrayList<HangHoa> gioHang = new ArrayList<HangHoa>();
+	int countCart = 0;
+	int tongTien = 0;
 
 	@Autowired
 	HangHoaService hangHoaService;
@@ -44,6 +48,9 @@ public class TrangRauController {
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("crPage", nPage);
 		model.addAttribute("HangHoa", HangHoa);
+		model.addAttribute("countCart", countCart);
+		model.addAttribute("tongTien", tongTien);
+		model.addAttribute("gioHang", gioHang);
 
 		return "client/TrangRau";
 	}
@@ -71,8 +78,59 @@ public class TrangRauController {
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("crPage", nPage);
 		model.addAttribute("HangHoa", HangHoa);
+		model.addAttribute("countCart", countCart);
+		model.addAttribute("tongTien", tongTien);
+		model.addAttribute("gioHang", gioHang);
 
 		return "client/TrangRau";
 	}
 
+	@RequestMapping(value = { "ThemVaoGio/{maHang}" }, method = RequestMethod.GET)
+	public String themVaoGio(ModelMap model, @PathVariable int maHang, HttpSession session) {
+		
+		tongTien = 0;
+		int dem = 0;
+		HangHoa hangHoa = hangHoaService.findById(maHang);
+		hangHoa.setSoLuong(1);
+		if (gioHang.size() == 0) {
+			gioHang.add(hangHoa);
+		} else {
+			for (int i = 0; i < gioHang.size(); i++) {
+				if (gioHang.get(i).getMaHang() == maHang) {
+					gioHang.get(i).setSoLuong(gioHang.get(i).getSoLuong() + 1);
+					dem = dem + 1;
+					break;
+				}			
+			}
+			if (dem == 0) {
+				gioHang.add(hangHoa);
+			}
+		}
+		for (int i = 0; i < gioHang.size(); i++) {
+			tongTien = tongTien + gioHang.get(i).getDonGia() * gioHang.get(i).getSoLuong();
+		}
+		countCart = gioHang.size();
+		session.setAttribute("gioHang", gioHang);
+
+		return "redirect:/Client/TrangRau/list/1";
+	}
+	
+	@RequestMapping(value = { "XoaKhoiGio/{maHang}" }, method = RequestMethod.GET)
+	public String xoaKhoiGio(ModelMap model, @PathVariable int maHang, HttpSession session) {
+		
+		tongTien = 0;
+		for(int i = 0; i < gioHang.size(); i++) {
+			if(gioHang.get(i).getMaHang() == maHang) {
+				gioHang.remove(i);
+			}
+		}
+		for (int i = 0; i < gioHang.size(); i++) {
+			tongTien = tongTien + gioHang.get(i).getDonGia() * gioHang.get(i).getSoLuong();
+		}
+		countCart = gioHang.size();
+		
+		session.setAttribute("gioHang", gioHang);
+
+		return "redirect:/Client/TrangRau/list/1";
+	}
 }

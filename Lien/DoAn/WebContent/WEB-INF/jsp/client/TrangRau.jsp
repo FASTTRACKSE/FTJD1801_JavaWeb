@@ -6,98 +6,57 @@
 <div class="container">
 	<ul class="breadcrumb">
 		<li><a href="index.html"><i class="fa fa-home"></i></a></li>
-		<li><a href="category.html">Electronics</a></li>
+		<li><a href="category.html">Rau sạch</a></li>
 	</ul>
-	<div class="row">
-		<div id="column-left" class="col-sm-3 hidden-xs column-left">
-			<div class="column-block">
-				<div class="columnblock-title">Categories</div>
-				<div class="category_block">
-					<ul class="box-category treeview-list treeview">
-						<li><a href="#" class="activSub">Desktops</a>
-							<ul>
-								<li><a href="#">PC</a></li>
-								<li><a href="#">MAC</a></li>
-							</ul></li>
-						<li><a href="#" class="activSub">Laptops &amp; Notebooks</a>
-							<ul>
-								<li><a href="#">Macs</a></li>
-								<li><a href="#">Windows</a></li>
-							</ul></li>
-						<li><a href="#" class="activSub">Components</a>
-							<ul>
-								<li><a href="#">Mice and Trackballs</a></li>
-								<li><a href="#" class="activSub">Monitors</a>
-									<ul>
-										<li><a href="#">test 1</a></li>
-										<li><a href="#">test 2</a></li>
-									</ul></li>
-								<li><a href="#">Windows</a></li>
-							</ul></li>
-						<li><a href="#">Tablets</a></li>
-						<li><a href="#">Software</a></li>
-						<li><a href="#">Phones & PDAs</a></li>
-						<li><a href="#">Cameras</a></li>
-						<li><a href="#">MP3 Players</a></li>
-					</ul>
-				</div>
-			</div>
+	<div class="row" >
+		<div id="column-left" class="col-sm-3 hidden-xs column-left" style="width: 250px;">
 			<div class="panel panel-default filter">
-				<div class="panel-heading columnblock-title">Refine Search</div>
+				<div class="panel-heading columnblock-title">Lọc sản phẩm</div>
 				<div class="filter-block">
 					<div class="list-group">
-						<a class="list-group-item">Color</a>
+						<a class="list-group-item">Bán chạy</a>
 						<div class="list-group-item">
 							<div id="filter-group1">
 								<label class="checkbox"> <input name="filter[]"
-									type="checkbox" value="1" /> Black (7)
+									type="checkbox" value="1" /> Ngày (7)
 								</label> <label class="checkbox"> <input name="filter[]"
-									type="checkbox" value="2" /> Blue (6)
+									type="checkbox" value="2" /> Tuần (6)
 								</label> <label class="checkbox"> <input name="filter[]"
-									type="checkbox" value="3" /> Red (6)
+									type="checkbox" value="3" /> Tháng (6)
 								</label>
 							</div>
 						</div>
-						<a class="list-group-item">Price</a>
+						<a class="list-group-item">Giá</a>
 						<div class="list-group-item">
 							<div id="filter-group2">
 								<label class="checkbox"> <input name="filter[]"
-									type="checkbox" value="4" /> $100-$300 (6)
+									type="checkbox" value="4" /> 10.000Đ-50.000Đ (21)
 								</label> <label class="checkbox"> <input name="filter[]"
-									type="checkbox" value="5" /> $301-$1000 (6)
+									type="checkbox" value="5" /> 51.000Đ-100.000Đ (11)
+								</label><label class="checkbox"> <input name="filter[]"
+									type="checkbox" value="6" /> 101.000Đ-200.000Đ (2)
+								</label><label class="checkbox"> <input name="filter[]"
+									type="checkbox" value="7" /> Trên 200.000Đ (0)
 								</label>
 							</div>
-						</div>
-						<a class="list-group-item">Size</a>
-						<div class="list-group-item">
-							<div id="filter-group3">
-								<label class="checkbox"> <input name="filter[]"
-									type="checkbox" value="6" /> Big (3)
-								</label> <label class="checkbox"> <input name="filter[]"
-									type="checkbox" value="7" /> Medium (3)
-								</label> <label class="checkbox"> <input name="filter[]"
-									type="checkbox" value="8" /> Small (1)
-								</label>
-							</div>
-						</div>
+						</div>						
 					</div>
 					<div class="panel-footer text-right">
-						<button type="button" id="button-filter" class="btn btn-primary">Refine
-							Search</button>
+						<button type="button" id="button-filter" class="btn btn-primary">Tra cứu</button>
 					</div>
 				</div>
 			</div>
 			<div class="banner">
 				<div class="item">
 					<a href="#"><img
-						src="<c:url value='/resources/client/image/banners/LeftBanner.jpg'/>"
+						src="<c:url value='/resources/client/image/banners/bannerGIF.gif'/>"
 						alt="Left Banner" class="img-responsive" /></a>
 				</div>
 			</div>
-			
+
 		</div>
 		<div id="content" class="col-sm-9">
-			<h2 class="category-title">Desktops</h2>
+			<h2 class="category-title">Giới thiệu sản phẩm</h2>
 			<div class="row category-banner">
 				<div class="col-sm-12 category-image">
 					<img
@@ -122,33 +81,16 @@
 							data-toggle="tooltip" title="Grid">
 							<i class="fa fa-th"></i>
 						</button>
-					</div>			
-				</div>
-				<div class="col-md-1 text-right page-wrapper">
-					<label class="control-label" for="input-limit">Show :</label>
-					<div class="limit">
-						<select id="input-limit" class="form-control">
-							<option value="8" selected="selected">8</option>
-							<option value="25">25</option>
-							<option value="50">50</option>
-							<option value="75">75</option>
-							<option value="100">100</option>
-						</select>
 					</div>
-				</div>
+				</div>				
 				<div class="col-md-2 text-right sort-wrapper">
-					<label class="control-label" for="input-sort">Sort By :</label>
+					<label class="control-label" for="input-sort">Sắp xếp theo :</label>
 					<div class="sort-inner">
 						<select id="input-sort" class="form-control">
-							<option value="ASC" selected="selected">Default</option>
-							<option value="ASC">Name (A - Z)</option>
-							<option value="DESC">Name (Z - A)</option>
-							<option value="ASC">Price (Low &gt; High)</option>
-							<option value="DESC">Price (High &gt; Low)</option>
-							<option value="DESC">Rating (Highest)</option>
-							<option value="ASC">Rating (Lowest)</option>
-							<option value="ASC">Model (A - Z)</option>
-							<option value="DESC">Model (Z - A)</option>
+							<option value="ASC" selected="selected">Mặc định</option>
+							<option value="ASC">Tên sản phẩm (A - Z)</option>
+							<option value="DESC">Tên sản phẩm (Z - A)</option>
+							<option value="ASC">Giá tiền (Low &gt; High)</option>						
 						</select>
 					</div>
 				</div>
@@ -166,8 +108,8 @@
 									class="img-responsive" />
 								</a>
 								<div class="button-group">
-									<a href="/Client/TrangRau/ThemVaoGio" class="addtocart-btn">Thêm Vào
-										Giỏ</a>
+									<a href="/DoAn/Client/TrangRau/ThemVaoGio/${tempHangHoa.maHang}" class="addtocart-btn">Thêm
+										Vào Giỏ</a>
 								</div>
 							</div>
 							<div class="caption product-detail">
@@ -183,8 +125,8 @@
 							</div>
 							<div class="button-group">
 
-								<button type="button" class="addtocart-btn">Thêm Vào
-									Giỏ</button>
+								<a href="/DoAn/Client/TrangRau/ThemVaoGio/${tempHangHoa.maHang}" class="addtocart-btn">Thêm
+										Vào Giỏ</a>
 
 							</div>
 						</div>

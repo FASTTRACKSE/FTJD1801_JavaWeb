@@ -63,6 +63,20 @@ img {
 								href='<c:url value="/Admin" />'>Trang chủ</a></li>
 							<li class="breadcrumb-item active">Danh sách khách hàng</li>
 						</ol>
+						<a class="btn btn-info"
+							href="<c:url value='/Admin/QuanLyDuLieu/KhachHang' />">Tất cả
+						</a>
+						<div style="width: 400px;">
+							<form action="/DoAn/Admin/QuanLyDuLieu/KhachHang/search"
+								method="POST" style="margin-top: 20px;">
+								<input value="${searchValue}" class="form-control" type="text"
+									name="searchName" placeholder="Search..."
+									style="float: left; width: 300px;">
+								<button class="btn btn-default" type="submit">
+									<i class="fa fa-search"></i>
+								</button>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -114,7 +128,7 @@ img {
 												<td>${tempKhachHang.ngaySinh}</td>
 												<td><a
 													href="<c:url value='/Admin/QuanLyDuLieu/KhachHang/xem/${tempKhachHang.maKhachHang}' />"><i
-														class="fa fa-eye"></i></a> <a												
+														class="fa fa-eye"></i></a> <a
 													href="<c:url value='/Admin/QuanLyDuLieu/KhachHang/xoa/${tempKhachHang.maKhachHang}' />">
 														<i class="fa fa-minus-square"></i>
 												</a></td>

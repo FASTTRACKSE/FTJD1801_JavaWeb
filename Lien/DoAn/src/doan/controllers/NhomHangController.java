@@ -2,14 +2,18 @@ package doan.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import doan.entity.NhomHang;
 import doan.entity.NhomHang;
 import doan.service.NhomHangService;
 
@@ -43,7 +47,7 @@ public class NhomHangController {
 		model.addAttribute("crPage", nPage);
 		model.addAttribute("NhomHang", NhomHang);
 
-		return "admin/QuanLyDuLieu/NhomHang";
+		return "admin/QuanLyDuLieu/DSNhomHang/NhomHang";
 	}
 
 	@RequestMapping(value = { "list/{nPage}" }, method = RequestMethod.GET)
@@ -70,41 +74,61 @@ public class NhomHangController {
 		model.addAttribute("crPage", nPage);
 		model.addAttribute("NhomHang", NhomHang);
 
-		return "admin/QuanLyDuLieu/NhomHang";
+		return "admin/QuanLyDuLieu/DSNhomHang/NhomHang";
 	}
 
-	@RequestMapping(value = { "duyet/{maNhomHang}" }, method = RequestMethod.GET)
-	public String duyetDon( ModelMap model, @PathVariable int maNhomHang) {
-		 
-//		NhomHang NhomHang= nhomHangService.findById(maNhomHang);
-//		NhomHang.setTrangThai("Đã duyệt");
-//		nhomHangService.updateNhomHang(NhomHang);
-		
-		return "redirect:/Admin/QuanLyNhomHang/DuyetDon";
+	@RequestMapping(value = { "them" }, method = RequestMethod.GET)
+	public String themNhomHang(ModelMap model) {
+
+		NhomHang nhomHang = new NhomHang();
+
+		model.addAttribute("nhomHang", nhomHang);
+		model.addAttribute("edit", false);
+		return "admin/QuanLyDuLieu/DSNhomHang/ThemNhomHang";
 	}
-	
-	@RequestMapping(value = { "huy/{maNhomHang}" }, method = RequestMethod.GET)
-	public String huyDon( ModelMap model, @PathVariable int maNhomHang) {
-		 
-//		NhomHang NhomHang= nhomHangService.findById(maNhomHang);
-//		NhomHang.setTrangThai("Đã hủy");
-//		nhomHangService.updateNhomHang(NhomHang);
-	
-		return "redirect:/Admin/QuanLyNhomHang/DuyetDon";
+
+	@RequestMapping(value = { "them" }, method = RequestMethod.POST)
+	public String themNhomHang(ModelMap model, @Valid NhomHang nhomHang, BindingResult result) {
+
+		nhomHangService.saveNhomHang(nhomHang);
+
+		return "redirect:/Admin/QuanLyDuLieu/NhomHang";
 	}
-	
+
+	@RequestMapping(value = { "sua/{maNhomHang}" }, method = RequestMethod.GET)
+	public String duyetDon(ModelMap model, @PathVariable int maNhomHang) {
+
+		NhomHang nhomHang = nhomHangService.findById(maNhomHang);
+		model.addAttribute("nhomHang", nhomHang);
+		model.addAttribute("edit", true);
+
+		return "admin/QuanLyDuLieu/DSNhomHang/ThemNhomHang";
+	}
+
+	@RequestMapping(value = { "sua/{maNhomHang}" }, method = RequestMethod.POST)
+	public String duyetDon(ModelMap model, @Valid NhomHang nhomHang, BindingResult result) {
+
+		nhomHangService.updateNhomHang(nhomHang);
+
+		return "redirect:/Admin/QuanLyDuLieu/NhomHang";
+	}
+
+	@RequestMapping(value = { "xoa/{maNhomHang}" }, method = RequestMethod.GET)
+	public String huyDon(ModelMap model, @PathVariable int maNhomHang) {
+
+		nhomHangService.deleteById(maNhomHang);
+
+		return "redirect:/Admin/QuanLyDuLieu/NhomHang";
+	}
+
 	@RequestMapping(value = { "xem/{maNhomHang}" }, method = RequestMethod.GET)
-	public String xemDon( ModelMap model, @PathVariable int maNhomHang) {
-	 
-//		NhomHang NhomHang= nhomHangService.findById(maNhomHang);
-//		NhomHang NhomHang = nhomHangService.findById(NhomHang.getMaNhomHang());
-//		NhomHang NhomHang = nhomHangService.findById(NhomHang.getMaNhomHang());
-//		
-//		model.addAttribute("NhomHang", NhomHang);
-//		model.addAttribute("NhomHang", NhomHang);
-//		model.addAttribute("NhomHang", NhomHang);
-		
-		return "admin/QuanLyNhomHang/NhomHang";
+	public String xemDon(ModelMap model, @PathVariable int maNhomHang) {
+
+		NhomHang NhomHang = nhomHangService.findById(maNhomHang);
+
+		model.addAttribute("nhomHang", NhomHang);
+
+		return "admin/QuanLyDuLieu/DSNhomHang/XemNhomHang";
 	}
 	
 }

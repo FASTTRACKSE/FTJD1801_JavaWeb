@@ -15,6 +15,10 @@ import javax.persistence.Table;
 @Table(name = "hanghoa", catalog = "doan1")
 public class HangHoa implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer maHang;
 	private String tenHang;
 	private Integer nhomHang;
@@ -122,7 +126,7 @@ public class HangHoa implements java.io.Serializable {
 		this.nguonGoc = nguonGoc;
 	}
 
-	@Column(name = "File", length = 45)
+	@Column(name = "File", length = 255)
 	public String getFile() {
 		return this.file;
 	}

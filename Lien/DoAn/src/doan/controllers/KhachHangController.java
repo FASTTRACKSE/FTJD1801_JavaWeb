@@ -2,6 +2,8 @@ package doan.controllers;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -20,9 +22,17 @@ public class KhachHangController {
 
 	@Autowired
 	KhachHangService khachHangService;
-	
+
 	@Autowired
 	MessageSource message;
+
+	@RequestMapping(value = { "search" }, method = RequestMethod.POST)
+	public String search(ModelMap model, @PathParam(value = "searchName") String searchName) {
+
+		tenKhachHang = searchName;
+
+		return "redirect:/Admin/QuanLyDuLieu/KhachHang/list/1";
+	}
 
 	@RequestMapping(value = { "", "/", "list" }, method = RequestMethod.GET)
 	public String listkhachHang(ModelMap model) {
@@ -31,11 +41,11 @@ public class KhachHangController {
 		int currentPage = (nPage - 1) * perPage;
 		int recordEnd = currentPage + perPage;
 
-		List<KhachHang> listAllkhachHang = khachHangService.findAllKhachHang(tenKhachHang);
+		List<KhachHang> listAllkhachHang = khachHangService.findAllKhachHang();
 		if (listAllkhachHang.size() < recordEnd) {
 			recordEnd = listAllkhachHang.size();
 		}
-		List<KhachHang> KhachHang = khachHangService.getKhachHang(currentPage, recordEnd, tenKhachHang);
+		List<KhachHang> KhachHang = khachHangService.getKhachHang(currentPage, recordEnd);
 
 		int totalPage = (int) Math.ceil((double) listAllkhachHang.size() / perPage);
 
@@ -49,46 +59,50 @@ public class KhachHangController {
 	@RequestMapping(value = { "list/{nPage}" }, method = RequestMethod.GET)
 	public String listkhachHangPaging(ModelMap model, @PathVariable int nPage) {
 
-		int perPage = 5;
-		List<KhachHang> listAllkhachHangs = khachHangService.findAllKhachHang();
-		int totalPage = (int) Math.ceil((double) listAllkhachHangs.size() / perPage);
-		if (nPage < 1) {
-			nPage = 1;
+		if (khachHangService.findAllKhachHang(tenKhachHang).size() == 0) {
+			return "admin/QuanLyDuLieu/DSKhachHang/KhachHang";
 		}
-		if (nPage > totalPage) {
-			nPage = totalPage;
-		}
-		int currentPage = (nPage - 1) * perPage;
-		int recordEnd = currentPage + perPage;
+			int perPage = 5;
+			List<KhachHang> listAllkhachHangs = khachHangService.findAllKhachHang(tenKhachHang);
+			int totalPage = (int) Math.ceil((double) listAllkhachHangs.size() / perPage);
+			if (nPage < 1) {
+				nPage = 1;
+			}
+			if (nPage > totalPage) {
+				nPage = totalPage;
+			}
+			int currentPage = (nPage - 1) * perPage;
+			int recordEnd = currentPage + perPage;
 
-		if (listAllkhachHangs.size() < recordEnd) {
-			recordEnd = listAllkhachHangs.size();
-		}
-		List<KhachHang> KhachHang = khachHangService.getKhachHang(currentPage, recordEnd);
+			if (listAllkhachHangs.size() < recordEnd) {
+				recordEnd = listAllkhachHangs.size();
+			}
+			List<KhachHang> KhachHang = khachHangService.getKhachHang(currentPage, recordEnd, tenKhachHang);
 
-		model.addAttribute("totalPage", totalPage);
-		model.addAttribute("crPage", nPage);
-		model.addAttribute("KhachHang", KhachHang);
+			model.addAttribute("totalPage", totalPage);
+			model.addAttribute("crPage", nPage);
+			model.addAttribute("KhachHang", KhachHang);
+			model.addAttribute("searchValue", tenKhachHang);
 
 		return "admin/QuanLyDuLieu/DSKhachHang/KhachHang";
 	}
-	
+
 	@RequestMapping(value = { "xoa/{maKhachHang}" }, method = RequestMethod.GET)
-	public String huyDon( ModelMap model, @PathVariable int maKhachHang) {
-		 
+	public String huyDon(ModelMap model, @PathVariable int maKhachHang) {
+
 		khachHangService.deleteById(maKhachHang);
-	
+
 		return "redirect:/Admin/QuanLykhachHang/DuyetDon";
 	}
-	
+
 	@RequestMapping(value = { "xem/{makhachHang}" }, method = RequestMethod.GET)
-	public String xemDon( ModelMap model, @PathVariable int makhachHang) {
-	 
-		KhachHang khachHang= khachHangService.findById(makhachHang);
-		
+	public String xemDon(ModelMap model, @PathVariable int makhachHang) {
+
+		KhachHang khachHang = khachHangService.findById(makhachHang);
+
 		model.addAttribute("KhachHang", khachHang);
-		
+
 		return "admin/QuanLyDuLieu/DSKhachHang/xem";
 	}
-	
+
 }

@@ -61,6 +61,9 @@ img {
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/Admin" />'>Trang chủ</a></li>
+								<li class="breadcrumb-item"><a
+								href='<c:url value="/Admin/QuanLyDuLieu/KhachHang" />'>Danh
+									sách khách hàng</a></li>
 							<li class="breadcrumb-item active">Thông tin khách hàng</li>
 						</ol>
 					</div>
@@ -97,16 +100,14 @@ img {
 						<div class="card-body collapse in">
 							<div class="card-block card-dashboard">
 								<div class="table-responsive">
-									<label>Mã khách hàng: ${KhachHang.maKhachHang}</label><br>
-									<label>Tên khách hàng: ${KhachHang.tenKhachHang}</label><br>
-									<label>Email: ${KhachHang.email}</label><br>
-									<label>Số điện thoại: ${KhachHang.soDienThoai}</label><br>
-									<label>Giới tính: ${KhachHang.gioiTinh}</label><br>
-									<label>Ngày sinh: ${KhachHang.ngaySinh}</label><br>															
+									<label>Mã khách hàng: &nbsp</label>${KhachHang.maKhachHang}<br>
+									<label>Tên khách hàng: &nbsp</label>${KhachHang.tenKhachHang}<br>
+									<label>Email: &nbsp</label>${KhachHang.email}<br>
+									<label>Số điện thoại: &nbsp</label>${KhachHang.soDienThoai}<br>
+									<label>Giới tính: &nbsp</label>${KhachHang.gioiTinh}<br>
+									<label>Ngày sinh: &nbsp</label>${KhachHang.ngaySinh}<br>															
 								</div>
-								
-									
-								
+
 								<div class="table-responsive" style="margin-top: 40px;">
 									<ol class="breadcrumb">																	
 										<li class="breadcrumb-item active">Thông tin đơn hàng của khách</li>

@@ -2,8 +2,10 @@ package doan.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -34,7 +36,7 @@ public class LoginController {
 
 	@RequestMapping(value = { "Login" }, method = RequestMethod.POST)
 	public String login(@PathParam(value = "email") String email, @PathParam(value = "password") String password,
-			ModelMap model) {
+			ModelMap model, HttpSession session) {
 
 		if (khachHangService.findAllKhachHang() != null) {
 			List<KhachHang> listAllDonHang = khachHangService.findAllKhachHang();
@@ -48,12 +50,12 @@ public class LoginController {
 			}
 
 		}
-
+		
 		model.addAttribute("user", user);
 		model.addAttribute("taikhoan", email);
 		model.addAttribute("matkhau", password);
 
 
-		return "client/account/login";
+		return "redirect:/Client/TrangRau";
 	}
 }
