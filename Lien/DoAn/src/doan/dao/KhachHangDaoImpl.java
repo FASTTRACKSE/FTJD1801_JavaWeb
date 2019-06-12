@@ -28,13 +28,6 @@ public class KhachHangDaoImpl extends AbstractDao<Integer, KhachHang> implements
 	public void deleteKhachHangById(int id) {
 		delete(getByKey(id));
 	}
-	
-	@SuppressWarnings("deprecation")
-	@Override
-	public KhachHang login(String userEmail, String userPass) {
-		
-		return null;
-	}
 
 	@SuppressWarnings("unchecked")
 	@Override

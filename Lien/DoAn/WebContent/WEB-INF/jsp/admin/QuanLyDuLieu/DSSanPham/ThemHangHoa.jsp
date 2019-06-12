@@ -59,9 +59,10 @@
 							</select>
 						</div>
 						<div class="form-group col-sm-4">
-							<label>Hình ảnh</label> <input type="file" name="file"
+							<label>Hình ảnh</label> <input type="file" name="fileToSave"
 								id="stuClass" class="btn btn-primary" />
-							<form:errors path="file" cssClass="error" />
+							<form:hidden path="filePath" />
+							<form:errors path="filePath" cssClass="error" />
 						</div>
 						<div class="form-group col-sm-12">
 							<label>Thông tin</label>

@@ -102,7 +102,7 @@ img {
 									<label>Địa chỉ giao: ${donHang.diaChi}</label><br>
 									<label>Ngày đặt hàng: ${donHang.ngayDatHang}</label><br>
 									<label>Ngày giao hàng: ${donHang.ngayGiaoHang}</label><br>
-									<label>Thuế: ${donHang.vat}/1</label><br>
+									<label>Giảm giá: ${donHang.giamGia} VNĐ</label><br>
 									<label>Tổng thành tiền: ${donHang.tongThanhTien} VNĐ</label><br>
 									<label>Nhân viên: ${nhanVien.tenNhanVien}</label><br>																	
 									<label>Trạng thái: ${donHang.trangThai}</label><br>								

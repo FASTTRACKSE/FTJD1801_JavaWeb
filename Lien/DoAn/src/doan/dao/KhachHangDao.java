@@ -10,8 +10,6 @@ public interface KhachHangDao {
 	void saveKhachHang(KhachHang KhachHang);
 
 	void deleteKhachHangById(int id);
-	
-	KhachHang login(String userEmail, String userPass);
 
 	List<KhachHang> findAllKhachHang();
 

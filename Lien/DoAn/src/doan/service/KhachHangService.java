@@ -12,8 +12,6 @@ public interface KhachHangService {
 	void updateKhachHang(KhachHang KhachHang);
 
 	void deleteById(int id);
-	
-	KhachHang login(String userEmail, String userPass);
 
 	List<KhachHang> findAllKhachHang();
 

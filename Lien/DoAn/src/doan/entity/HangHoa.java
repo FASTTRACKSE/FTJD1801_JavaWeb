@@ -27,7 +27,7 @@ public class HangHoa implements java.io.Serializable {
 	private int soLuong;
 	private String thongTin;
 	private String nguonGoc;
-	private String file;
+	private String filePath;
 
 	public HangHoa() {
 	}
@@ -40,7 +40,7 @@ public class HangHoa implements java.io.Serializable {
 	}
 
 	public HangHoa(String tenHang, Integer nhomHang, int donGia, String donViTinh, int soLuong, String thongTin,
-			String nguonGoc, String file) {
+			String nguonGoc, String filePath) {
 		this.tenHang = tenHang;
 		this.nhomHang = nhomHang;
 		this.donGia = donGia;
@@ -48,7 +48,7 @@ public class HangHoa implements java.io.Serializable {
 		this.soLuong = soLuong;
 		this.thongTin = thongTin;
 		this.nguonGoc = nguonGoc;
-		this.file = file;
+		this.filePath = filePath;
 	}
 
 	@Id
@@ -127,12 +127,12 @@ public class HangHoa implements java.io.Serializable {
 	}
 
 	@Column(name = "File", length = 255)
-	public String getFile() {
-		return this.file;
+	public String getFilePath() {
+		return this.filePath;
 	}
 
-	public void setFile(String file) {
-		this.file = file;
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
 
 }

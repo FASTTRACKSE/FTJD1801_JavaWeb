@@ -10,7 +10,7 @@ public class ClientController {
 
 	@RequestMapping(value = {"","/"})
 	public ModelAndView list() {
-		return new ModelAndView("redirect:/Client/TrangRau");
+		return new ModelAndView("redirect:/Client/TrangChu");
 	}
 
 }

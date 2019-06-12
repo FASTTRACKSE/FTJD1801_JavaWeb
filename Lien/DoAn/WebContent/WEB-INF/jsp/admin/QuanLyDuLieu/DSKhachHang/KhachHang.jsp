@@ -124,11 +124,11 @@ img {
 												<td>${tempKhachHang.tenKhachHang}</td>
 												<td>${tempKhachHang.email}</td>
 												<td>${tempKhachHang.soDienThoai}</td>
-												<td>${tempKhachHang.gioiTinh}</td>
-												<td>${tempKhachHang.ngaySinh}</td>
+												<td>${tempKhachHang.gioiTinh}</td>												
 												<td><a
 													href="<c:url value='/Admin/QuanLyDuLieu/KhachHang/xem/${tempKhachHang.maKhachHang}' />"><i
-														class="fa fa-eye"></i></a> <a
+														class="fa fa-eye"></i></a></td>
+												<td><a
 													href="<c:url value='/Admin/QuanLyDuLieu/KhachHang/xoa/${tempKhachHang.maKhachHang}' />">
 														<i class="fa fa-minus-square"></i>
 												</a></td>
@@ -141,8 +141,8 @@ img {
 												<td>Email</td>
 												<td>Số điện thoại</td>
 												<td>Giới tính</td>
-												<td>Ngày sinh</td>
-												<td></td>
+												<td>Xem</td>
+												<td>Xóa</td>
 											</tr>
 										</thead>
 									</table>

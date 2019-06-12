@@ -31,19 +31,15 @@ public class KhachHangServiceImpl implements KhachHangService {
 		KhachHang entity = khachHangDao.findById(KhachHang.getMaKhachHang());
 		if (entity != null) {
 			entity.setTenKhachHang(KhachHang.getTenKhachHang());
-			;
 			entity.setEmail(KhachHang.getEmail());
 			entity.setSoDienThoai(KhachHang.getSoDienThoai());
 			entity.setGioiTinh(KhachHang.getGioiTinh());
 			entity.setNgaySinh(KhachHang.getNgaySinh());
 			entity.setUsers(KhachHang.getUsers());
 			entity.setMatKhau(KhachHang.getMatKhau());
+			entity.setDiaChi(KhachHang.getDiaChi());
+			entity.setPoint(KhachHang.getPoint());
 		}
-	}
-	
-	public KhachHang login(String userEmail, String userPass) {
-		return khachHangDao.login(userEmail, userPass);
-		
 	}
 
 	@Override

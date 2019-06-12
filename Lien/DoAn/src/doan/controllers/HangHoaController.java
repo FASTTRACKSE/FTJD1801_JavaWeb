@@ -137,7 +137,7 @@ public class HangHoaController {
 
 	@RequestMapping(value = { "/them" }, method = RequestMethod.POST)
 	public String saveEmployee(@PathParam(value = "nhomHang") String nhomHang, @Valid HangHoa hangHoa,
-			BindingResult result, ModelMap model, @RequestParam MultipartFile file) throws IOException {
+			BindingResult result, ModelMap model, @RequestParam MultipartFile fileToSave) throws IOException {
 
 		if (result.hasErrors()) {
 			return "admin/QuanLyDuLieu/DSSanPham/ThemHangHoa";
@@ -149,17 +149,17 @@ public class HangHoaController {
 //			return "QuanLyNhanSu/hosonhanvien/add_form";
 //		}
 
-		if (!file.isEmpty()) {
-			String filename = file.getOriginalFilename();
-			byte[] bytes = file.getBytes();
+		if (!fileToSave.isEmpty()) {
+			String filename = fileToSave.getOriginalFilename();
+			byte[] bytes = fileToSave.getBytes();
 			BufferedOutputStream stream = new BufferedOutputStream(
 					new FileOutputStream(new File(UPLOAD_DIRECTORY + File.separator + filename)));
 			stream.write(bytes);
 			stream.flush();
 			stream.close();
-			hangHoa.setFile(filename);
+			hangHoa.setFilePath(filename);
 		} else {
-			hangHoa.setFile("avatar.jpg");
+			hangHoa.setFilePath("avatar.jpg");
 		}
 		int nhom = Integer.parseInt(nhomHang);
 		hangHoa.setNhomHang(nhom);

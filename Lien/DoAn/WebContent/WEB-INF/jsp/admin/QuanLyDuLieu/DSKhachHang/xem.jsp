@@ -105,7 +105,8 @@ img {
 									<label>Email: &nbsp</label>${KhachHang.email}<br>
 									<label>Số điện thoại: &nbsp</label>${KhachHang.soDienThoai}<br>
 									<label>Giới tính: &nbsp</label>${KhachHang.gioiTinh}<br>
-									<label>Ngày sinh: &nbsp</label>${KhachHang.ngaySinh}<br>															
+									<label>Ngày sinh: &nbsp</label>${KhachHang.ngaySinh}<br>				
+									<label>Địa chỉ: &nbsp</label>${KhachHang.diaChi}<br>												
 								</div>
 
 								<div class="table-responsive" style="margin-top: 40px;">

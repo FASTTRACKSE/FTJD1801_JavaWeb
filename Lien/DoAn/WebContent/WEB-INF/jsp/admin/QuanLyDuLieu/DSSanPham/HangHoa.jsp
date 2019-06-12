@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <jsp:include page="/WEB-INF/jsp/admin/templates/header.jsp" />
 
 <style>
@@ -113,7 +114,7 @@ img {
 												<td>${tempHangHoa.donViTinh}</td>
 												<td>${tempHangHoa.soLuong}</td>
 												<td><img
-													src="<c:url value='/resources/client/image/item/${tempHangHoa.file}'/>"
+													src="<c:url value='/resources/client/image/item/${tempHangHoa.filePath}'/>"
 													class="rounded" width="50" height="50" /></td>
 												<td><a
 													href="<c:url value='/Admin/QuanLyDuLieu/HangHoa/xem/${tempHangHoa.maHang}' />"><i

@@ -37,10 +37,11 @@ public class DonHangServiceImpl implements DonHangService {
 			entity.setNgayDatHang(DonHang.getNgayDatHang());
 			entity.setNgayGiaoHang(DonHang.getNgayGiaoHang());
 			entity.setDiaChi(DonHang.getDiaChi());
-			entity.setVat(DonHang.getVat());
 			entity.setTongThanhTien(DonHang.getTongThanhTien());
 			entity.setMaNhanVien(DonHang.getMaNhanVien());
 			entity.setTrangThai(DonHang.getTrangThai());
+			entity.setGiamGia(DonHang.getGiamGia());
+			entity.setSoDienThoai(DonHang.getSoDienThoai());
 		}
 	}
 

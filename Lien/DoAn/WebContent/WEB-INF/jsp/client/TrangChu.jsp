@@ -8,8 +8,9 @@
 		<li><a href="index.html"><i class="fa fa-home"></i></a></li>
 		<li><a href="category.html">Rau sạch</a></li>
 	</ul>
-	<div class="row" >
-		<div id="column-left" class="col-sm-3 hidden-xs column-left" style="width: 250px;">
+	<div class="row">
+		<div id="column-left" class="col-sm-3 hidden-xs column-left"
+			style="width: 250px;">
 			<div class="panel panel-default filter">
 				<div class="panel-heading columnblock-title">Lọc sản phẩm</div>
 				<div class="filter-block">
@@ -39,10 +40,11 @@
 									type="checkbox" value="7" /> Trên 200.000Đ (0)
 								</label>
 							</div>
-						</div>						
+						</div>
 					</div>
 					<div class="panel-footer text-right">
-						<button type="button" id="button-filter" class="btn btn-primary">Tra cứu</button>
+						<button type="button" id="button-filter" class="btn btn-primary">Tra
+							cứu</button>
 					</div>
 				</div>
 			</div>
@@ -82,15 +84,16 @@
 							<i class="fa fa-th"></i>
 						</button>
 					</div>
-				</div>				
+				</div>
 				<div class="col-md-2 text-right sort-wrapper">
-					<label class="control-label" for="input-sort">Sắp xếp theo :</label>
+					<label class="control-label" for="input-sort">Sắp xếp theo
+						:</label>
 					<div class="sort-inner">
 						<select id="input-sort" class="form-control">
 							<option value="ASC" selected="selected">Mặc định</option>
 							<option value="ASC">Tên sản phẩm (A - Z)</option>
 							<option value="DESC">Tên sản phẩm (Z - A)</option>
-							<option value="ASC">Giá tiền (Low &gt; High)</option>						
+							<option value="ASC">Giá tiền (Low &gt; High)</option>
 						</select>
 					</div>
 				</div>
@@ -102,20 +105,24 @@
 						style="float: left;">
 						<div class="product-thumb">
 							<div class="image product-imageblock" style="height: 250px;">
-								<a href="product.html"> <img class="hangHoa"
+								<a
+									href="<c:url value='/Client/ChiTietHang/xem/${tempHangHoa.maHang}'/>">
+									<img class="hangHoa"
 									src="<c:url value='/resources/client/image/item/${tempHangHoa.file}'/>"
 									alt="women's clothing stores" title="lorem ippsum dolor dummy"
 									class="img-responsive" />
 								</a>
 								<div class="button-group">
-									<a href="/DoAn/Client/TrangRau/ThemVaoGio/${tempHangHoa.maHang}" class="addtocart-btn">Thêm
-										Vào Giỏ</a>
+									<a
+										href="/DoAn/Client/TrangChu/ThemVaoGio/${tempHangHoa.maHang}"
+										class="addtocart-btn">Thêm Vào Giỏ</a>
 								</div>
 							</div>
 							<div class="caption product-detail">
 								<h4 class="product-name">
-									<a href="product.html" title="lorem ippsum dolor dummy">
-										${tempHangHoa.tenHang} </a>
+									<a
+										href="<c:url value='/Client/ChiTietHang/xem/${tempHangHoa.maHang}'/>"
+										title="lorem ippsum dolor dummy"> ${tempHangHoa.tenHang} </a>
 								</h4>
 								<p class="product-desc">${tempHangHoa.thongTin}</p>
 								<p class="product-desc">${tempHangHoa.nguonGoc}</p>
@@ -125,8 +132,8 @@
 							</div>
 							<div class="button-group">
 
-								<a href="/DoAn/Client/TrangRau/ThemVaoGio/${tempHangHoa.maHang}" class="addtocart-btn">Thêm
-										Vào Giỏ</a>
+								<a href="/DoAn/Client/TrangChu/ThemVaoGio/${tempHangHoa.maHang}"
+									class="addtocart-btn">Thêm Vào Giỏ</a>
 
 							</div>
 						</div>
@@ -134,14 +141,84 @@
 				</c:forEach>
 			</div>
 			<div class="category-page-wrapper">
-				<div class="result-inner">Showing 1 to 8 of 10 (2 Pages)</div>
+				
 				<div class="pagination-inner">
-					<ul class="pagination">
-						<li class="active"><span>1</span></li>
-						<li><a href="category.html">2</a></li>
-						<li><a href="category.html">&gt;</a></li>
-						<li><a href="category.html">&gt;|</a></li>
-					</ul>
+					<c:if test="${crPage != null}">
+
+						<ul class="pagination">
+							<c:if test="${crPage != 1}">
+								<li class="page-item"><a class="page-link"
+									href="/DoAn/Client/TrangChu/list/1">Trang đầu</a></li>
+								<li class="page-item"><a class="page-link"
+									href="/DoAn/Client/TrangChu/list/${crPage-1}">Trang
+										trước</a></li>
+							</c:if>
+
+							<c:choose>
+								<c:when test="${crPage eq 1}">
+									<c:choose>
+										<c:when test="${totalPage gt 2}">
+											<li class="page-item active"><a class="page-link"
+												href="/DoAn/Client/TrangChu/list/${crPage}">${crPage}</a></li>
+											<li class="page-item"><a class="page-link"
+												href="/DoAn/Client/TrangChu/list/${crPage+1}">${crPage+1}</a></li>
+											<li class="page-item"><a class="page-link"
+												href="/DoAn/Client/TrangChu/list/${crPage+2}">${crPage+2}</a>
+										</c:when>
+										<c:when test="${totalPage gt 1}">
+											<li class="page-item active"><a class="page-link"
+												href="/DoAn/Client/TrangChu/list/${crPage}">${crPage}</a></li>
+											<li class="page-item"><a class="page-link"
+												href="/DoAn/Client/TrangChu/list/${crPage+1}">${crPage+1}</a></li>
+										</c:when>
+										<c:when test="${totalPage gt 0}">
+											<li class="page-item active"><a class="page-link"
+												href="/DoAn/Client/TrangChu/list/${crPage}">${crPage}</a></li>
+										</c:when>
+									</c:choose>
+								</c:when>
+								<c:when test="${crPage eq totalPage}">
+									<c:choose>
+										<c:when test="${totalPage gt 2}">
+											<li class="page-item"><a class="page-link"
+												href="/DoAn/Client/TrangChu/list/${crPage-2}">${crPage-2}</a></li>
+											<li class="page-item"><a class="page-link"
+												href="/DoAn/Client/TrangChu/list/${crPage-1}">${crPage-1}</a></li>
+											<li class="page-item active"><a class="page-link"
+												href="/DoAn/Client/TrangChu/list/${crPage}">${crPage}</a>
+										</c:when>
+										<c:when test="${totalPage gt 1}">
+											<li class="page-item"><a class="page-link"
+												href="/DoAn/Client/TrangChu/list/${crPage-1}">${crPage-1}</a></li>
+											<li class="page-item active"><a class="page-link"
+												href="/DoAn/Client/TrangChu/list/${crPage}">${crPage}</a>
+										</c:when>
+										<c:when test="${totalPage gt 1}">
+											<li class="page-item active"><a class="page-link"
+												href="/DoAn/Client/TrangChu/list/${crPage}">${crPage}</a>
+										</c:when>
+									</c:choose>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="/DoAn/Client/TrangChu/list/${crPage-1}">${crPage-1}</a></li>
+									<li class="page-item active"><a class="page-link"
+										href="/DoAn/Client/TrangChu/list/${crPage}">${crPage}</a></li>
+									<li class="page-item"><a class="page-link"
+										href="/DoAn/Client/TrangChu/list/${crPage+1}">${crPage+1}</a></li>
+								</c:otherwise>
+							</c:choose>
+
+							<c:if test="${crPage lt totalPage}">
+								<li class="page-item"><a class="page-link"
+									href="/DoAn/Client/TrangChu/list/${crPage+1}">Trang
+										sau</a></li>
+								<li class="page-item"><a class="page-link"
+									href="/DoAn/Client/TrangChu/list/${totalPage}">Trang
+										cuối</a></li>
+							</c:if>
+						</ul>
+					</c:if>
 				</div>
 			</div>
 		</div>

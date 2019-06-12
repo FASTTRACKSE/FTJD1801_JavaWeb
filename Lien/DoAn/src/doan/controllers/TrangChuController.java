@@ -17,8 +17,8 @@ import doan.entity.HangHoa;
 import doan.service.HangHoaService;
 
 @Controller
-@RequestMapping("/Client/TrangRau")
-public class TrangRauController {
+@RequestMapping("/Client/TrangChu")
+public class TrangChuController {
 
 	ArrayList<HangHoa> gioHang = new ArrayList<HangHoa>();
 	int countCart = 0;
@@ -32,6 +32,7 @@ public class TrangRauController {
 
 	@RequestMapping(value = { "", "/", "list" }, method = RequestMethod.GET)
 	public String listHangHoa(ModelMap model) {
+		tongTien = 0;
 		int nPage = 1;
 		int perPage = 12;
 		int currentPage = (nPage - 1) * perPage;
@@ -44,6 +45,11 @@ public class TrangRauController {
 		List<HangHoa> HangHoa = hangHoaService.getHangHoa(currentPage, recordEnd);
 
 		int totalPage = (int) Math.ceil((double) listAllHangHoa.size() / perPage);
+		
+		for (int i = 0; i < gioHang.size(); i++) {
+			tongTien = tongTien + gioHang.get(i).getDonGia() * gioHang.get(i).getSoLuong();
+		}
+		countCart = gioHang.size();
 
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("crPage", nPage);
@@ -52,12 +58,12 @@ public class TrangRauController {
 		model.addAttribute("tongTien", tongTien);
 		model.addAttribute("gioHang", gioHang);
 
-		return "client/TrangRau";
+		return "client/TrangChu";
 	}
 
 	@RequestMapping(value = { "list/{nPage}" }, method = RequestMethod.GET)
 	public String listHangHoaPaging(ModelMap model, @PathVariable int nPage) {
-
+		tongTien = 0;
 		int perPage = 12;
 		List<HangHoa> listAllHangHoas = hangHoaService.findAllHangHoa();
 		int totalPage = (int) Math.ceil((double) listAllHangHoas.size() / perPage);
@@ -74,6 +80,11 @@ public class TrangRauController {
 			recordEnd = listAllHangHoas.size();
 		}
 		List<HangHoa> HangHoa = hangHoaService.getHangHoa(currentPage, recordEnd);
+		
+		for (int i = 0; i < gioHang.size(); i++) {
+			tongTien = tongTien + gioHang.get(i).getDonGia() * gioHang.get(i).getSoLuong();
+		}
+		countCart = gioHang.size();
 
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("crPage", nPage);
@@ -82,7 +93,7 @@ public class TrangRauController {
 		model.addAttribute("tongTien", tongTien);
 		model.addAttribute("gioHang", gioHang);
 
-		return "client/TrangRau";
+		return "client/TrangChu";
 	}
 
 	@RequestMapping(value = { "ThemVaoGio/{maHang}" }, method = RequestMethod.GET)
@@ -112,7 +123,7 @@ public class TrangRauController {
 		countCart = gioHang.size();
 		session.setAttribute("gioHang", gioHang);
 
-		return "redirect:/Client/TrangRau/list/1";
+		return "redirect:/Client/TrangChu/list/1";
 	}
 	
 	@RequestMapping(value = { "XoaKhoiGio/{maHang}" }, method = RequestMethod.GET)
@@ -131,6 +142,6 @@ public class TrangRauController {
 		
 		session.setAttribute("gioHang", gioHang);
 
-		return "redirect:/Client/TrangRau/list/1";
+		return "redirect:/Client/TrangChu/list/1";
 	}
 }

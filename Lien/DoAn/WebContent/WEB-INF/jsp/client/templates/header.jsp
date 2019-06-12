@@ -50,9 +50,10 @@
 	type="text/javascript"></script>
 <style type="text/css">
 .hangHoa {
-	height: 250px;
-	width: 220px;
+	height: 240px;
+	width: 205px;
 	padding: 0px;
+	border: solid 1px;;
 }
 </style>
 </head>
@@ -170,17 +171,19 @@
 									<c:forEach var="tempGioHang" items="${gioHang}">
 										<tbody>
 											<tr>
-												<td class="text-center"><a href="#"><img
-														class="img-thumbnail" style="width: 35px; height: 40px;" title="lorem ippsum dolor dummy"
+												<td class="text-center"><a href="<c:url value='/Client/ChiTietHang/xem/${tempGioHang.maHang}'/>"><img
+														class="img-thumbnail" style="width: 40px; height: 40px;"
+														title="${tempGioHang.tenHang}"
 														alt="lorem ippsum dolor dummy"
 														src="<c:url value='/resources/client/image/item/${tempGioHang.file}'/>"></a></td>
-												<td class="text-left"><a href="#">${tempGioHang.tenHang}</a></td>
+												<td class="text-left"><a href="<c:url value='/Client/ChiTietHang/xem/${tempGioHang.maHang}'/>">${tempGioHang.tenHang}</a></td>
 												<td class="text-right">x ${tempGioHang.soLuong}</td>
 												<td class="text-right">${tempGioHang.donGia}</td>
 												<td class="text-center"><a
-														class="btn btn-danger btn-xs" href="/DoAn/Client/TrangRau/XoaKhoiGio/${tempGioHang.maHang}">
+													class="btn btn-danger btn-xs"
+													href="/DoAn/Client/TrangChu/XoaKhoiGio/${tempGioHang.maHang}">
 														<i class="fa fa-times"></i>
-													</a></td>
+												</a></td>
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -191,28 +194,33 @@
 									<table class="table table-bordered">
 										<tbody>
 											<tr>
-												<td class="text-right"><strong>Sub-Total</strong></td>
-												<td class="text-right">$210.00</td>
+												<td class="text-right"><strong>Tổng tiền sản
+														phẩm:</strong></td>
+												<td class="text-right">${tongTien}VNĐ</td>
 											</tr>
 											<tr>
-												<td class="text-right"><strong>Eco Tax (-2.00)</strong></td>
-												<td class="text-right">$2.00</td>
+												<td class="text-right"><strong>Phí ship: (Toàn
+														quốc)</strong></td>
+												<td class="text-right">30000 VNĐ</td>
 											</tr>
 											<tr>
-												<td class="text-right"><strong>VAT (20%)</strong></td>
-												<td class="text-right">$42.00</td>
+												<td class="text-right"><strong>Thuế (10%):</strong></td>
+												<td class="text-right">${tongTien + tongTien/10}VNĐ</td>
 											</tr>
 											<tr>
-												<td class="text-right"><strong>Total</strong></td>
-												<td class="text-right">$254.00</td>
+												<td class="text-right"><strong>Tổng thành
+														tiền:</strong></td>
+												<td class="text-right">${tongTien + tongTien/10 + 30000}
+													VNĐ</td>
 											</tr>
 										</tbody>
 									</table>
 									<p class="text-right">
-										<span class="btn-viewcart"><a href="/Client/GioHang/XemGio"><strong><i
+										<span class="btn-viewcart"><a
+											href="/DoAn/Client/GioHang/XemGio"><strong><i
 													class="fa fa-shopping-cart"></i> Xem giỏ hàng</strong></a></span> <span
-											class="btn-checkout"><a href="checkout.html"><strong><i
-													class="fa fa-share"></i> Quy trình</strong></a></span>
+											class="btn-checkout"><a href="<c:url value='/Client/DatHang'/>"><strong><i
+													class="fa fa-share"></i> Đặt hàng</strong></a></span>
 									</p>
 								</div>
 							</li>
@@ -229,15 +237,15 @@
 				<ul class="main-navigation">
 					<li><a href="<c:url value='/Client'/>" class="parent">Trang
 							Chủ</a></li>
-					<li><a href="<c:url value='/Client/TrangRau'/>" class="parent">Rau</a>
+					<li><a href="<c:url value='/Client/TrangChu'/>" class="parent">Rau</a>
 					</li>
-					<li><a href="<c:url value='/Client/TrangRau'/>" class="parent">Củ</a>
+					<li><a href="<c:url value='/Client/TrangChu'/>" class="parent">Củ</a>
 					</li>
-					<li><a href="<c:url value='/Client/TrangRau'/>" class="parent">Quả</a>
+					<li><a href="<c:url value='/Client/TrangChu'/>" class="parent">Quả</a>
 					</li>
-					<li><a href="<c:url value='/Client/TrangRau'/>" class="parent">Hạt</a>
+					<li><a href="<c:url value='/Client/TrangChu'/>" class="parent">Hạt</a>
 					</li>
-					<li><a href="<c:url value='/Client/TrangRau'/>" class="parent">Sức
+					<li><a href="<c:url value='/Client/TrangChu'/>" class="parent">Sức
 							khỏe và sắc đẹp</a></li>
 				</ul>
 			</div>

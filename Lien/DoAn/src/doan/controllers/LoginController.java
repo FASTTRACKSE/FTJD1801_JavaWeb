@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -37,25 +36,31 @@ public class LoginController {
 	@RequestMapping(value = { "Login" }, method = RequestMethod.POST)
 	public String login(@PathParam(value = "email") String email, @PathParam(value = "password") String password,
 			ModelMap model, HttpSession session) {
+		String thongBao;
 
 		if (khachHangService.findAllKhachHang() != null) {
-			List<KhachHang> listAllDonHang = khachHangService.findAllKhachHang();
-			model.addAttribute("DonHang", listAllDonHang);
+			List<KhachHang> listKhachHang = khachHangService.findAllKhachHang();			
 
-			for (int i = 0; i < listAllDonHang.size(); i++) {
-				if (listAllDonHang.get(i).getUsers().equals(email)) {
-					if (listAllDonHang.get(i).getMatKhau().equals(password))
-						user = listAllDonHang.get(i);
+			for (int i = 0; i < listKhachHang.size(); i++) {
+				if (listKhachHang.get(i).getUsers().equals(email)) {
+					if (listKhachHang.get(i).getMatKhau().equals(password))
+						user = listKhachHang.get(i);
 				}
 			}
 
 		}
 		
+		if(user == null) {
+			thongBao = "Đăng nhập thất bại!!! Sai tài khoản hoặc mật khẩu.";
+			model.addAttribute("thongBao", thongBao);
+			return "client/account/login";			
+		}
+		
 		model.addAttribute("user", user);
 		model.addAttribute("taikhoan", email);
-		model.addAttribute("matkhau", password);
+		session.setAttribute("user", user);
 
 
-		return "redirect:/Client/TrangRau";
+		return "redirect:/Client/TrangChu";
 	}
 }
